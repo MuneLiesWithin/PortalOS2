@@ -1,0 +1,133 @@
+* {
+    font-family: Helvetica;
+    margin: 0;
+    padding: 0; 
+}
+
+footer, header {
+    background-color: #eee;
+    position: fixed;
+    width: 100%;
+    background-color: #eee;
+    z-index: 100;
+}
+
+header {
+    border-bottom: 2px solid rgb(7, 81, 146);
+    padding: 1.2em 1.4em;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    align-items: center;
+    top: 0;
+}
+
+footer {
+    border-top: 2px solid rgb(7, 81, 146);
+    font-weight: bold;
+    text-align: center;
+    height: 35px;
+    padding-top: 1em;
+    bottom: 0;
+}
+
+.container {
+    border: 2px solid rgb(7, 81, 146);
+    border-radius: 10px;
+    position: absolute;
+    top: 60%;
+    left: 30%;
+    padding: 1em;
+    transform: translate(-50%, -50%);
+    display: flex;  
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    border: none;
+    padding: 7px;
+    background-color: rgb(7, 81, 146);
+    color: white;
+    transition: .5s;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+button:hover{
+    background-color: rgb(150, 22, 22);
+    cursor: pointer;
+}
+
+button:active{
+    color:rgb(143, 65, 65);
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deathandtaxes {
+    margin-left: 1em;
+}
+
+input, select {
+    border: 2px solid rgb(7, 81, 146);
+    border-radius: 5px;
+    padding: 2px;
+    margin-bottom: 0.5em;
+}
+
+legend {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* FLASH MESSAGE */
+
+#message {
+    border-radius: 10px;
+    position: fixed;
+    top: 24%; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; 
+    padding: 3.5px;
+    font-weight: bold;
+}
+
+.neutral {
+    border: solid 2px rgb(238, 238, 238);
+    background-color: rgb(238, 238, 238, 0.7);
+}
+
+.error {
+    border: solid 2px rgb(248, 26, 26);
+    background-color: rgb(248, 26, 26, 0.7); 
+}
+
+.success {
+    border: solid 2px rgb(7, 196, 64);
+    background-color: rgb(7, 196, 64, 0.7);
+}
+
+.warning {
+    border: solid 2px rgb(241, 241, 50);
+    background-color: rgba(241, 241, 50, 0.7)
+}
+
+/* IMAGENS */
+
+.imagenshow { 
+    border: 2px solid rgb(7, 81, 146);
+    border-radius: 4.5px;
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    top: 35%;
+    left: 60%;
+}
+
