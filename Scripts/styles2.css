@@ -69,17 +69,6 @@ label {
     margin: 2em 0 0 2em;
 }
 
-#panel31 {
-    width: 150%;
-}
-
-#panel39 {
-    width: 90%;
-}
-
-#panel26 {
-    width: 110%;
-}
 
 .mastercontainer {
         flex: 1;
@@ -88,14 +77,11 @@ label {
         margin-bottom: 35px;
 }
 
-.masterform {
+.normal {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.normal {
-    width: 50%;
+    
 }
 
 .normal input {
@@ -104,12 +90,35 @@ label {
 }
 
 .anexos {
-    margin-top: -5em;
-    margin-left: 4em;
-    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#panel39 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#panel31_column1_container, #panel31_column2_container {
+    display: flex;
+    justify-content: space-between;
 }
 
 /*
+#panel31 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.masterform {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media (min-height: 700px) {
     footer {
         background-color: #222;
