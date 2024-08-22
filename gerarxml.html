@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Generator</title>
+    <link rel="stylesheet" href="Scripts/styles.css">
+    <link rel="shortcut icon" href="Imagens/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <img src="Imagens/hmv.png" alt="hmv">
+        <img src="Imagens/onbase.png" alt="onbase">
+        <img src="Imagens/power.png" alt="power" style="margin-bottom: 2.5em;">  
+    </header>
+    <div id="message">
+        <p></p>
+    </div>
+    <fieldset class="container">
+        <legend>Gerador de XML</legend>
+        <div class="form">
+            <div class="normal">
+                <label for="cidade">Cidade:</label><br>
+                <select id="cidade" onchange="handleKeyPress(event, 'generateXML')">
+                    <option value="PortoAlegre">Porto Alegre</option>
+                    <option value="Alvorada">Alvorada</option>
+                    <option value="Barueri">Barueri</option>
+                    <option value="Blumenau">Blumenau</option>
+                    <option value="Campinas">Campinas</option>
+                    <option value="CampoBom">Campo Bom</option>
+                    <option value="Canoas">Canoas</option>
+                    <option value="CaxiasDoSul">Caxias do Sul</option>
+                    <option value="Extrema">Extrema</option>
+                    <option value="Florianopolis">Florianópolis</option>
+                    <option value="Itajai">Itajaí</option>
+                    <option value="Joinville">Joinville</option>
+                    <option value="NovaSantaRita">Nova Santa Rita</option>
+                    <option value="Recife">Recife</option>
+                    <option value="SaoPaulo">São Paulo</option>
+                </select><br>
+                <label for="cnpj">CNPJ Prestador:</label><br>
+                <input type="text" id="cnpj" onkeypress="handleKeyPress(event, 'generateXML')"><br>
+                <label for="dataemissao">Data Emissão:</label><br>
+                <input type="date" id="dataemissao" onkeypress="handleKeyPress(event, 'generateXML')"><br>
+                <label for="valor">Valor:</label><br>
+                <input type="text" id="valor" onkeypress="return isNumberKey(event)" oninput="validateInput(this)"><br>
+                <label for="numdoc">Número Documento:</label><br>
+                <input type="text" id="numdoc" onkeypress="handleKeyPress(event, 'generateXML')"><br>
+                <label for="uf">UF Prestador:</label><br>
+                <select id="uf" onchange="handleKeyPress(event, 'generateXML')">
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select><br>
+            </div>
+            <!--IMPOSTOS-->
+            <div class="deathandtaxes">
+                <label for="pis">Pis:</label><br>
+                <input type="text" id="pis" onkeypress="return isNumberKey(event)" oninput="validateInput(this)"><br>
+                <label for="cofins">Cofins:</label><br>
+                <input type="text" id="cofins" onkeypress="return isNumberKey(event)" oninput="validateInput(this)"><br>
+                <label for="ir">IR:</label><br>
+                <input type="text" id="ir" onkeypress="return isNumberKey(event)" oninput="validateInput(this)"><br>
+                <label for="csll">Csll:</label><br>
+                <input type="text" id="csll" onkeypress="return isNumberKey(event)" oninput="validateInput(this)"><br>
+                <label for="iss">Iss:</label><br>
+                <input type="text" id="iss" onkeypress="return isNumberKey(event)" oninput="validateInput(this)"><br>
+                <label for="inss">Inss:</label><br>
+                <input type="text" id="inss" onkeypress="return isNumberKey(event)" oninput="validateInput(this)"><br>
+            </div>
+        </div>
+        <button onclick="generateXML()" id="generateXML">Gerar XML</button>
+    </fieldset>
+    <div id="imagens"></div>
+    <footer>
+        <p>Power Imaging<sup>&copy;</sup> 2024</p>
+    </footer>
+    <script src="gerarxml.js"></script>
+</body>
+</html>

@@ -1,0 +1,2752 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ordem de Servi&#231;o - Solicita&#231;&#227;o de Servi&#231;o</title>
+    <link rel="shortcut icon" href="Imagens/favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="./Scripts/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" src="./Scripts/notify.min.js"></script>
+    <script type="text/javascript" src="./config.js?202312151036"></script>
+    <script type="text/javascript" src="./ordemservico.js"></script>
+    <link rel="stylesheet" type="text/css" href="./Scripts/styles2.css" />
+    <style type="text/css">
+        /*!
+        The OnBase Information Management System incorporates jQuery UI software,
+        which is available in source code form at http://jqueryui.com/ pursuant
+        the terms of the below MIT license.  The following MIT licensing terms
+        and copyright notice apply only to the jQuery UI software:
+
+        Copyright (c) 2010 Paul Bakaus, http://jqueryui.com/
+
+        This software consists of voluntary contributions made by many individuals
+        (AUTHORS.txt, http://jqueryui.com/about) For exact contribution history, see
+        the revision history and logs, available at http://jquery-ui.googlecode.com/svn/
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in
+        all copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+        THE SOFTWARE.
+        */
+        .wait-cursor {
+            cursor: wait;
+        }
+
+        .ui-helper-hidden {
+            display: none
+        }
+
+        .ui-helper-hidden-accessible {
+            position: absolute !important;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px,1px,1px,1px)
+        }
+
+        .ui-helper-reset {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            line-height: 1.3;
+            text-decoration: none;
+            font-size: 100%;
+            list-style: none
+        }
+
+        .ui-helper-clearfix:before, .ui-helper-clearfix:after {
+            content: "";
+            display: table
+        }
+
+        .ui-helper-clearfix:after {
+            clear: both
+        }
+
+        .ui-helper-clearfix {
+            zoom: 1
+        }
+
+        .ui-helper-zfix {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            opacity: 0;
+            filter: Alpha(Opacity=0)
+        }
+
+        .ui-state-disabled {
+            cursor: default !important
+        }
+
+        .ui-icon {
+            display: block;
+            text-indent: -99999px;
+            overflow: hidden;
+            background-repeat: no-repeat
+        }
+
+        .ui-icon {
+            width: 16px;
+            height: 16px;
+            background-image: none
+        }
+
+        .ui-widget-content .ui-icon {
+            background-image: none
+        }
+
+        .ui-widget-header .ui-icon {
+            background-image: none
+        }
+
+        .ui-state-default .ui-icon {
+            background-image: none
+        }
+
+        .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
+            background-image: none
+        }
+
+        .ui-state-active .ui-icon {
+            background-image: none
+        }
+
+        .ui-state-highlight .ui-icon {
+            background-image: none
+        }
+
+        .ui-state-error .ui-icon, .ui-state-error-text .ui-icon {
+            background-image: none
+        }
+
+        .ui-icon-triangle-1-s {
+            background-position: 0 -2px
+        }
+
+        .ui-icon-circle-triangle-e {
+            background-position: -16px 0
+        }
+
+        .ui-icon-circle-triangle-w {
+            background-position: -32px 0
+        }
+
+        .ui-icon-carat-1-n, .ui-icon-carat-1-ne, .ui-icon-carat-1-e, .ui-icon-carat-1-se, .ui-icon-carat-1-s, .ui-icon-carat-1-sw, .ui-icon-carat-1-w, .ui-icon-carat-1-nw, .ui-icon-carat-2-n-s, .ui-icon-carat-2-e-w, .ui-icon-triangle-1-n, .ui-icon-triangle-1-ne, .ui-icon-triangle-1-e, .ui-icon-triangle-1-se, .ui-icon-triangle-1-sw, .ui-icon-triangle-1-w, .ui-icon-triangle-1-nw, .ui-icon-triangle-2-n-s, .ui-icon-triangle-2-e-w, .ui-icon-arrow-1-n, .ui-icon-arrow-1-ne, .ui-icon-arrow-1-e, .ui-icon-arrow-1-s, .ui-icon-arrow-1-se, .ui-icon-arrow-1-sw, .ui-icon-arrow-1-w, .ui-icon-arrow-1-nw, .ui-icon-arrow-2-n-s, .ui-icon-arrow-2-ne-sw, .ui-icon-arrow-2-e-w, .ui-icon-arrow-2-se-nw, .ui-icon-arrowstop-1-n, .ui-icon-arrowstop-1-e, .ui-icon-arrowstop-1-s, .ui-icon-arrowstop-1-w, .ui-icon-arrowthick-1-n, .ui-icon-arrowthick-1-ne, .ui-icon-arrowthick-1-e, .ui-icon-arrowthick-1-se, .ui-icon-arrowthick-1-s, .ui-icon-arrowthick-1-sw, .ui-icon-arrowthick-1-w, .ui-icon-arrowthick-1-nw, .ui-icon-arrowthick-2-n-s, .ui-icon-arrowthick-2-ne-sw, .ui-icon-arrowthick-2-e-w, .ui-icon-arrowthick-2-se-nw, .ui-icon-arrowthickstop-1-n, .ui-icon-arrowthickstop-1-e, .ui-icon-arrowthickstop-1-s, .ui-icon-arrowthickstop-1-w, .ui-icon-arrowreturnthick-1-w, .ui-icon-arrowreturnthick-1-n, .ui-icon-arrowreturnthick-1-e, .ui-icon-arrowreturnthick-1-s, .ui-icon-arrowreturn-1-w, .ui-icon-arrowreturn-1-n, .ui-icon-arrowreturn-1-e, .ui-icon-arrowreturn-1-s, .ui-icon-arrowrefresh-1-w, .ui-icon-arrowrefresh-1-n, .ui-icon-arrowrefresh-1-e, .ui-icon-arrowrefresh-1-s, .ui-icon-arrow-4, .ui-icon-arrow-4-diag, .ui-icon-extlink, .ui-icon-newwin, .ui-icon-refresh, .ui-icon-shuffle, .ui-icon-transfer-e-w, .ui-icon-transferthick-e-w, .ui-icon-folder-collapsed, .ui-icon-folder-open, .ui-icon-document, .ui-icon-document-b, .ui-icon-note, .ui-icon-mail-closed, .ui-icon-mail-open, .ui-icon-suitcase, .ui-icon-comment, .ui-icon-person, .ui-icon-print, .ui-icon-trash, .ui-icon-locked, .ui-icon-unlocked, .ui-icon-bookmark, .ui-icon-tag, .ui-icon-home, .ui-icon-flag, .ui-icon-calendar, .ui-icon-cart, .ui-icon-pencil, .ui-icon-clock, .ui-icon-disk, .ui-icon-calculator, .ui-icon-zoomin, .ui-icon-zoomout, .ui-icon-search, .ui-icon-wrench, .ui-icon-gear, .ui-icon-heart, .ui-icon-star, .ui-icon-link, .ui-icon-cancel, .ui-icon-plus, .ui-icon-plusthick, .ui-icon-minus, .ui-icon-minusthick, .ui-icon-close, .ui-icon-closethick, .ui-icon-key, .ui-icon-lightbulb, .ui-icon-scissors, .ui-icon-clipboard, .ui-icon-copy, .ui-icon-contact, .ui-icon-image, .ui-icon-video, .ui-icon-script, .ui-icon-info, .ui-icon-notice, .ui-icon-help, .ui-icon-check, .ui-icon-bullet, .ui-icon-radio-off, .ui-icon-radio-on, .ui-icon-pin-w, .ui-icon-pin-s, .ui-icon-play, .ui-icon-pause, .ui-icon-seek-next, .ui-icon-seek-prev, .ui-icon-seek-end, .ui-icon-seek-first, .ui-icon-stop, .ui-icon-eject, .ui-icon-volume-off, .ui-icon-volume-on, .ui-icon-power, .ui-icon-signal-diag, .ui-icon-signal, .ui-icon-battery-0, .ui-icon-battery-1, .ui-icon-battery-2, .ui-icon-battery-3, .ui-icon-circle-plus, .ui-icon-circle-minus, .ui-icon-circle-close, .ui-icon-circle-triangle-s, .ui-icon-circle-triangle-n, .ui-icon-circle-arrow-e, .ui-icon-circle-arrow-s, .ui-icon-circle-arrow-w, .ui-icon-circle-arrow-n, .ui-icon-circle-zoomin, .ui-icon-circle-zoomout, .ui-icon-circle-check, .ui-icon-circlesmall-plus, .ui-icon-circlesmall-minus, .ui-icon-circlesmall-close, .ui-icon-squaresmall-plus, .ui-icon-squaresmall-minus, .ui-icon-squaresmall-close, .ui-icon-grip-dotted-vertical, .ui-icon-grip-dotted-horizontal, .ui-icon-grip-solid-vertical, .ui-icon-grip-solid-horizontal, .ui-icon-gripsmall-diagonal-se, .ui-icon-grip-diagonal-se {
+            background-image: none !important
+        }
+
+        .ui-widget-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.3)
+        }
+
+        .ui-accordion {
+            width: 100%
+        }
+
+            .ui-accordion .ui-accordion-header {
+                cursor: pointer;
+                position: relative;
+                margin-top: 1px;
+                zoom: 1
+            }
+
+            .ui-accordion .ui-accordion-li-fix {
+                display: inline
+            }
+
+            .ui-accordion .ui-accordion-header-active {
+                border-bottom: 0 !important
+            }
+
+            .ui-accordion .ui-accordion-header a {
+                display: block;
+                font-size: 1em;
+                padding: .5em .5em .5em .7em
+            }
+
+        .ui-accordion-icons .ui-accordion-header a {
+            padding-left: 2.2em
+        }
+
+        .ui-accordion .ui-accordion-header .ui-icon {
+            position: absolute;
+            left: .5em;
+            top: 50%;
+            margin-top: -8px
+        }
+
+        .ui-accordion .ui-accordion-content {
+            padding: 1em 2.2em;
+            border-top: 0;
+            margin-top: -2px;
+            position: relative;
+            top: 1px;
+            margin-bottom: 2px;
+            overflow: auto;
+            display: none;
+            zoom: 1
+        }
+
+        .ui-accordion .ui-accordion-content-active {
+            display: block
+        }
+
+        .ui-autocomplete {
+            position: absolute;
+            cursor: default;
+            font-size: .9em
+        }
+
+        * html .ui-autocomplete {
+            width: 1px
+        }
+
+        .ui-menu {
+            list-style: none;
+            padding: 2px;
+            margin: 0;
+            display: block;
+            float: left
+        }
+
+            .ui-menu .ui-menu {
+                margin-top: -3px
+            }
+
+            .ui-menu .ui-menu-item {
+                margin: 0;
+                padding: 0;
+                zoom: 1;
+                float: left;
+                clear: left;
+                width: 100%
+            }
+
+            .ui-menu .ui-menu-item-wrapper {
+                text-decoration: none;
+                display: block;
+                padding: .2em .4em;
+                line-height: 1.5;
+                zoom: 1
+            }
+
+                .ui-menu .ui-menu-item-wrapper.ui-state-hover, .ui-menu .ui-menu-item-wrapper.ui-state-active {
+                    font-weight: normal;
+                    margin: -1px
+                }
+
+        .ui-button {
+            display: inline-block;
+            position: relative;
+            padding: 0;
+            margin-right: .1em;
+            text-decoration: none !important;
+            cursor: pointer;
+            text-align: center;
+            zoom: 1;
+            overflow: visible
+        }
+
+        .ui-button-icon-only {
+            width: 2.2em
+        }
+
+        button.ui-button-icon-only {
+            width: 2.2em
+        }
+
+        .ui-button-icons-only {
+            width: 3.4em
+        }
+
+        button.ui-button-icons-only {
+            width: 3.7em
+        }
+
+        .ui-min-button {
+            min-width: 5em
+        }
+
+        .ui-button .ui-button-text {
+            display: block;
+            line-height: 1.4
+        }
+
+        .ui-button-text-only .ui-button-text {
+            padding: .4em 1em
+        }
+
+        .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text {
+            padding: .4em;
+            text-indent: -9999999px
+        }
+
+        .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text {
+            padding: .4em 1em .4em 2.1em
+        }
+
+        .ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text {
+            padding: .4em 2.1em .4em 1em
+        }
+
+        .ui-button-text-icons .ui-button-text {
+            padding-left: 2.1em;
+            padding-right: 2.1em
+        }
+
+        input.ui-button {
+            padding: .4em 1em
+        }
+
+        .ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px
+        }
+
+        .ui-button-icon-only .ui-icon {
+            left: 50%;
+            margin-left: -8px
+        }
+
+        .ui-button-text-icon-primary .ui-button-icon-primary, .ui-button-text-icons .ui-button-icon-primary, .ui-button-icons-only .ui-button-icon-primary {
+            left: .5em
+        }
+
+        .ui-button-text-icon-secondary .ui-button-icon-secondary, .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary {
+            right: .5em
+        }
+
+        .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary {
+            right: .5em
+        }
+
+        .ui-buttonset {
+            margin-right: 7px
+        }
+
+            .ui-buttonset .ui-button {
+                margin-left: 0;
+                margin-right: -.3em
+            }
+
+        button.ui-button::-moz-focus-inner {
+            border: 0;
+            padding: 0
+        }
+
+        .ui-datepicker {
+            width: 17em;
+            padding: .2em .2em 0;
+            font-size: .9em;
+            display: none
+        }
+
+            .ui-datepicker .ui-datepicker-header {
+                position: relative;
+                padding: .2em 0
+            }
+
+            .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+                position: absolute;
+                top: 2px;
+                width: 1.8em;
+                height: 1.8em
+            }
+
+            .ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover {
+                top: 1px
+            }
+
+            .ui-datepicker .ui-datepicker-prev {
+                left: 2px
+            }
+
+            .ui-datepicker .ui-datepicker-next {
+                right: 2px
+            }
+
+            .ui-datepicker .ui-datepicker-prev-hover {
+                left: 1px
+            }
+
+            .ui-datepicker .ui-datepicker-next-hover {
+                right: 1px
+            }
+
+            .ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+                display: block;
+                position: absolute;
+                left: 50%;
+                margin-left: -8px;
+                top: 50%;
+                margin-top: -8px
+            }
+
+            .ui-datepicker .ui-datepicker-title {
+                margin: 0 2.3em;
+                line-height: 1.8em;
+                text-align: center
+            }
+
+                .ui-datepicker .ui-datepicker-title select {
+                    font-size: 1em;
+                    margin: 1px 0
+                }
+
+            .ui-datepicker select.ui-datepicker-month-year {
+                width: 100%
+            }
+
+            .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+                width: 49%
+            }
+
+            .ui-datepicker table {
+                width: 100%;
+                font-size: .9em;
+                border-collapse: collapse;
+                margin: 0 0 .4em
+            }
+
+            .ui-datepicker th {
+                padding: .7em .3em;
+                text-align: center;
+                font-weight: bold;
+                border: 0
+            }
+
+            .ui-datepicker td {
+                border: 0;
+                padding: 1px
+            }
+
+                .ui-datepicker td span, .ui-datepicker td a {
+                    display: block;
+                    padding: .2em;
+                    text-align: right;
+                    text-decoration: none
+                }
+
+            .ui-datepicker .ui-datepicker-buttonpane {
+                background-image: none;
+                margin: .7em 0 0 0;
+                padding: 0 .2em;
+                border-left: 0;
+                border-right: 0;
+                border-bottom: 0
+            }
+
+                .ui-datepicker .ui-datepicker-buttonpane button {
+                    float: right;
+                    margin: .5em .2em .4em;
+                    cursor: pointer;
+                    padding: .2em .6em .3em .6em;
+                    width: auto;
+                    overflow: visible
+                }
+
+                    .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+                        float: left
+                    }
+
+            .ui-datepicker.ui-datepicker-multi {
+                width: auto
+            }
+
+        .ui-datepicker-multi .ui-datepicker-group {
+            float: left
+        }
+
+            .ui-datepicker-multi .ui-datepicker-group table {
+                width: 95%;
+                margin: 0 auto .4em
+            }
+
+        .ui-datepicker-multi-2 .ui-datepicker-group {
+            width: 50%
+        }
+
+        .ui-datepicker-multi-3 .ui-datepicker-group {
+            width: 33.3%
+        }
+
+        .ui-datepicker-multi-4 .ui-datepicker-group {
+            width: 25%
+        }
+
+        .ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header {
+            border-left-width: 0
+        }
+
+        .ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+            border-left-width: 0
+        }
+
+        .ui-datepicker-multi .ui-datepicker-buttonpane {
+            clear: left
+        }
+
+        .ui-datepicker-row-break {
+            clear: both;
+            width: 100%;
+            font-size: 0
+        }
+
+        .ui-datepicker-rtl {
+            direction: rtl
+        }
+
+            .ui-datepicker-rtl .ui-datepicker-prev {
+                right: 2px;
+                left: auto
+            }
+
+            .ui-datepicker-rtl .ui-datepicker-next {
+                left: 2px;
+                right: auto
+            }
+
+            .ui-datepicker-rtl .ui-datepicker-prev:hover {
+                right: 1px;
+                left: auto
+            }
+
+            .ui-datepicker-rtl .ui-datepicker-next:hover {
+                left: 1px;
+                right: auto
+            }
+
+            .ui-datepicker-rtl .ui-datepicker-buttonpane {
+                clear: right
+            }
+
+                .ui-datepicker-rtl .ui-datepicker-buttonpane button {
+                    float: left
+                }
+
+                    .ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current {
+                        float: right
+                    }
+
+            .ui-datepicker-rtl .ui-datepicker-group {
+                float: right
+            }
+
+            .ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header {
+                border-right-width: 0;
+                border-left-width: 1px
+            }
+
+            .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+                border-right-width: 0;
+                border-left-width: 1px
+            }
+
+        .ui-datepicker-cover {
+            position: absolute;
+            z-index: -1;
+            filter: mask();
+            top: -4px;
+            left: -4px;
+            width: 200px;
+            height: 200px
+        }
+
+        .ui-dialog {
+            position: absolute;
+            padding: .2em;
+            width: 300px;
+            overflow: hidden
+        }
+
+            .ui-dialog .ui-dialog-titlebar {
+                padding: .4em 1em;
+                position: relative
+            }
+
+            .ui-dialog .ui-dialog-title {
+                float: left;
+                margin: .1em 16px .1em 0
+            }
+
+            .ui-dialog .ui-dialog-titlebar-close {
+                position: absolute;
+                right: .3em;
+                top: 50%;
+                width: 19px;
+                margin: -10px 0 0 0;
+                padding: 1px;
+                height: 18px
+            }
+
+                .ui-dialog .ui-dialog-titlebar-close span {
+                    display: block;
+                    margin: 1px
+                }
+
+                .ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus {
+                    padding: 0
+                }
+
+            .ui-dialog .ui-dialog-content {
+                position: relative;
+                border: 0;
+                padding: .5em 1em;
+                background: none;
+                overflow: auto;
+                zoom: 1
+            }
+
+            .ui-dialog .ui-dialog-buttonpane {
+                text-align: left;
+                border-width: 1px 0 0 0;
+                background-image: none;
+                margin: .5em 0 0 0;
+                padding: .3em 1em .5em .4em
+            }
+
+                .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+                    float: right
+                }
+
+                .ui-dialog .ui-dialog-buttonpane button {
+                    margin: .5em .4em .5em 0;
+                    cursor: pointer
+                }
+
+            .ui-dialog .ui-resizable-se {
+                width: 14px;
+                height: 14px;
+                right: 3px;
+                bottom: 3px
+            }
+
+        .ui-draggable .ui-dialog-titlebar {
+            cursor: move
+        }
+
+        .ui-front {
+            z-index: 100
+        }
+
+        .ui-progressbar {
+            height: 2em;
+            text-align: left;
+            overflow: hidden
+        }
+
+            .ui-progressbar .ui-progressbar-value {
+                margin: -1px;
+                height: 100%
+            }
+
+        .ui-resizable {
+            position: relative
+        }
+
+        .ui-resizable-handle {
+            position: absolute;
+            font-size: .1px;
+            display: block
+        }
+
+        .ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
+            display: none
+        }
+
+        .ui-resizable-n {
+            cursor: n-resize;
+            height: 7px;
+            width: 100%;
+            top: -5px;
+            left: 0
+        }
+
+        .ui-resizable-s {
+            cursor: s-resize;
+            height: 7px;
+            width: 100%;
+            bottom: -5px;
+            left: 0
+        }
+
+        .ui-resizable-e {
+            cursor: e-resize;
+            width: 7px;
+            right: -5px;
+            top: 0;
+            height: 100%
+        }
+
+        .ui-resizable-w {
+            cursor: w-resize;
+            width: 7px;
+            left: -5px;
+            top: 0;
+            height: 100%
+        }
+
+        .ui-resizable-se {
+            cursor: se-resize;
+            width: 12px;
+            height: 12px;
+            right: 1px;
+            bottom: 1px
+        }
+
+        .ui-resizable-sw {
+            cursor: sw-resize;
+            width: 9px;
+            height: 9px;
+            left: -5px;
+            bottom: -5px
+        }
+
+        .ui-resizable-nw {
+            cursor: nw-resize;
+            width: 9px;
+            height: 9px;
+            left: -5px;
+            top: -5px
+        }
+
+        .ui-resizable-ne {
+            cursor: ne-resize;
+            width: 9px;
+            height: 9px;
+            right: -5px;
+            top: -5px
+        }
+
+        .ui-selectable-helper {
+            position: absolute;
+            z-index: 100;
+            border: 1px dotted #000
+        }
+
+        .ui-slider {
+            position: relative;
+            text-align: left
+        }
+
+            .ui-slider .ui-slider-handle {
+                position: absolute;
+                z-index: 2;
+                width: 1.2em;
+                height: 1.2em;
+                cursor: default
+            }
+
+            .ui-slider .ui-slider-range {
+                position: absolute;
+                z-index: 1;
+                font-size: .7em;
+                display: block;
+                border: 0;
+                background-position: 0 0
+            }
+
+        .ui-slider-horizontal {
+            height: .8em
+        }
+
+            .ui-slider-horizontal .ui-slider-handle {
+                top: -.3em;
+                margin-left: -.6em
+            }
+
+            .ui-slider-horizontal .ui-slider-range {
+                top: 0;
+                height: 100%
+            }
+
+            .ui-slider-horizontal .ui-slider-range-min {
+                left: 0
+            }
+
+            .ui-slider-horizontal .ui-slider-range-max {
+                right: 0
+            }
+
+        .ui-slider-vertical {
+            width: .8em;
+            height: 100px
+        }
+
+            .ui-slider-vertical .ui-slider-handle {
+                left: -.3em;
+                margin-left: 0;
+                margin-bottom: -.6em
+            }
+
+            .ui-slider-vertical .ui-slider-range {
+                left: 0;
+                width: 100%
+            }
+
+            .ui-slider-vertical .ui-slider-range-min {
+                bottom: 0
+            }
+
+            .ui-slider-vertical .ui-slider-range-max {
+                top: 0
+            }
+
+        .ui-tabs {
+            position: relative;
+            padding: .2em;
+            zoom: 1
+        }
+
+            .ui-tabs .ui-tabs-nav {
+                margin: 0;
+                padding: .2em .2em 0
+            }
+
+                .ui-tabs .ui-tabs-nav li {
+                    list-style: none;
+                    float: left;
+                    position: relative;
+                    top: 1px;
+                    margin: 0 .2em 1px 0;
+                    border-bottom: 0 !important;
+                    padding: 0;
+                    white-space: nowrap
+                }
+
+                    .ui-tabs .ui-tabs-nav li a {
+                        float: left;
+                        padding: .5em 1em;
+                        text-decoration: none
+                    }
+
+                    .ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+                        margin-bottom: 0;
+                        padding-bottom: 1px
+                    }
+
+                        .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a {
+                            cursor: text
+                        }
+
+                    .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {
+                        cursor: pointer
+                    }
+
+            .ui-tabs .ui-tabs-panel {
+                display: block;
+                border-width: 0;
+                padding: 1em 1.4em;
+                background: none
+            }
+
+            .ui-tabs .ui-tabs-hide {
+                display: none !important
+            }
+
+        .ui-widget-overlay {
+            background: #aaa 50% 50% repeat-x;
+            opacity: .3;
+            filter: Alpha(Opacity=30)
+        }
+
+        .ui-widget-shadow {
+            margin: -8px 0 0 -8px;
+            padding: 8px;
+            background: #aaa 50% 50% repeat-x;
+            opacity: .3;
+            filter: Alpha(Opacity=30);
+            -moz-border-radius: 8px;
+            -khtml-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px
+        }
+    </style>
+    <style type="text/css">
+        /*!**************************Confidential and Proprietary*****************************
+        * File Name: form.css
+        ********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
+        div.field_print.hidden {
+            white-space: pre-wrap;
+            border: none
+        }
+
+        *, html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, fieldset, form, label, input, table, caption, tbody, tfoot, thead, tr, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        form {
+            min-width: 100%;
+            display: inline-block
+        }
+
+            form.use-legacy-form-overflow {
+                max-width: 100%
+            }
+
+        .no-label-overflow {
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: anywhere
+        }
+
+        body {
+            font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+            font-size: .99em
+        }
+
+        .ui-dialog {
+            font-size: .85em
+        }
+
+        .ui-dialog-titlebar-close {
+            display: none
+        }
+
+        div.orientation_horizontal {
+            float: left
+        }
+
+        .radiobutton_vertical {
+            display: flex
+        }
+
+        .radiobutton_horizontal {
+            display: inline-flex
+        }
+
+        .radiobutton_vertical, .radiobutton_horizontal {
+            align-items: center
+        }
+
+        .radiobutton_label_top {
+            flex-direction: column-reverse
+        }
+
+        .radiobutton_label_bottom {
+            flex-direction: column
+        }
+
+        .radiobutton_label_left {
+            flex-direction: row-reverse
+        }
+
+        .radiobuttonoption_padding_left {
+            padding-left: 5px
+        }
+
+        .radiobuttonoption_padding_right {
+            padding-right: 5px
+        }
+
+        span.radiobutton_vertical.radiobutton_label_top, span.radiobutton_vertical.radiobutton_label_bottom {
+            align-items: flex-start
+        }
+
+        .radiobutton_label_left.radiobutton_vertical {
+            width: fit-content;
+            justify-content: flex-end
+        }
+
+        .containerFloatInherit {
+            float: inherit
+        }
+
+        .control_clear {
+            clear: left
+        }
+
+        td.dialog-content, th.dialog-content {
+            padding-left: 3px;
+            padding-right: 3px
+        }
+
+        th.dialog-content {
+            padding-top: 5px;
+            padding-bottom: 3px
+        }
+
+        h1 {
+            padding: 2px
+        }
+
+        p {
+            padding: 1px;
+            display: block
+        }
+
+        span.paragraph {
+            display: block;
+            padding: 1px 4px 1px 4px;
+            margin: 0 2px 0 2px
+        }
+
+        .table table {
+            width: 100%;
+            padding: 5px;
+            border-collapse: collapse
+        }
+
+        div.nestedtable table.top_table {
+            width: 100%
+        }
+
+        div.nestedtable table.sub_table {
+            width: 95%;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        div.nestedtable table {
+            border-collapse: collapse
+        }
+
+        th.header.ui-widget-header {
+            border-width: 1px;
+            border-style: solid
+        }
+
+        td.header.ui-widget-header {
+            border-left-style: none
+        }
+
+        th.header.title_column {
+            cursor: pointer
+        }
+
+        div.nestedtable .tablecolumncontainer {
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .customaction_hidden, .unityformelement.customaction_hidden, div.unityformelement.customaction_hidden {
+            display: none
+        }
+
+        .errorarrow {
+            padding: 0 0 0 0;
+            margin: 0 0 0 1px;
+            position: absolute;
+            z-index: 0;
+            visibility: hidden
+        }
+
+        .errortip {
+            padding: 3px 3px 3px 3px;
+            font-weight: normal;
+            font-size: .8em
+        }
+
+        .errorbrokenrule {
+            background: transparent none !important;
+            border-width: 0 !important
+        }
+
+        .errorlist {
+            list-style: none none outside;
+            margin-left: 0
+        }
+
+        input {
+            padding: 1px
+        }
+
+            input.field_input {
+                max-width: 98%
+            }
+
+                input.field_input.select_input {
+                    max-width: 88%;
+                    max-width: calc(98% - 1.1em)
+                }
+
+            input.readonly, textarea.readonly {
+                opacity: 1
+            }
+
+        .comboboxbutton.ui-button {
+            width: 1.1em
+        }
+
+        .comboboxbutton .ui-button-text {
+            display: inline;
+            line-height: normal
+        }
+
+        input.field_input.radiobutton_option {
+            border: 0
+        }
+
+        input[type=submit], input[type=button], button {
+            cursor: pointer;
+            padding: 4px;
+            margin: 3px
+        }
+
+        .displaystyle_label span.field_input {
+            display: inline-block;
+            border-width: 0
+        }
+
+        .field, .barcodereader {
+            position: relative
+        }
+
+        .field, .barcodereader, div.section, div.repeater, div.table, div.nestedtable.top_container, div.nestedtable.sub_container {
+            padding: 4px;
+            margin: 2px 2px 4px 2px
+        }
+
+            .field textarea {
+                width: 90%
+            }
+
+        .fit_content_height textarea {
+            max-height: 89999px
+        }
+
+        .field_label {
+            display: block;
+            white-space: normal;
+            word-wrap: break-word
+        }
+
+        .bold_label {
+            font-weight: bold
+        }
+
+        .label_container, .column_label_container {
+            font-weight: normal
+        }
+
+        .required::after {
+            margin-left: 2px;
+            color: red;
+            content: "*"
+        }
+
+        .required-before::before {
+            margin-right: 2px;
+            color: red;
+            content: "*"
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center
+        }
+
+        .tablecolumncontainer > .checkbox {
+            justify-content: center
+        }
+
+        .check_label {
+            display: inline-block;
+            padding: 0 4px 0 4px;
+            width: calc(100% - 13px)
+        }
+
+        .radiobuttonoption_label {
+            vertical-align: middle;
+            white-space: normal;
+            line-height: 1em;
+            padding-top: 1px;
+            width: calc(100% - 13px)
+        }
+
+        .radiobutton_option {
+            vertical-align: middle
+        }
+
+        .option {
+            white-space: nowrap;
+            padding: 2px 0
+        }
+
+        .invalid_field .field_input {
+            border: 8px
+        }
+
+        .invalid_signature {
+            border: 3px solid red
+        }
+
+        div.section div.header {
+            display: block;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            margin-top: 5px
+        }
+
+            div.section div.header > h2 {
+                font-size: inherit
+            }
+
+        div.section .container {
+            padding: 5px 0 5px 5px
+        }
+
+        .navigation {
+            zoom: 1;
+            padding-top: 5px;
+            padding-right: 2px;
+            padding-left: 2px;
+            margin-right: 6px;
+            margin-left: 6px
+        }
+
+            .navigation .page_list {
+                padding: 0 0 0 4px
+            }
+
+                .navigation .page_list li {
+                    list-style-type: none;
+                    float: left;
+                    padding: 10px;
+                    margin-right: 5px;
+                    cursor: pointer;
+                    margin-bottom: -2px;
+                    font-size: .75em;
+                    white-space: nowrap
+                }
+
+        .page_hidden {
+            display: none
+        }
+
+        div.pageheader {
+            padding-bottom: 5px;
+            margin-top: 18px;
+            padding-right: 2px;
+            padding-left: 2px;
+            margin-right: 6px;
+            margin-left: 6px;
+            border-color: transparent
+        }
+
+        div.page {
+            font-size: .8em;
+            min-height: 200px;
+            clear: both;
+            padding-bottom: 6px;
+            padding-top: 6px;
+            padding-right: 2px;
+            padding-left: 2px;
+            margin-right: 6px;
+            margin-left: 6px
+        }
+
+        th.header {
+            font-weight: bold
+        }
+
+            th.header div.label_container {
+                margin-left: 5px;
+                margin-right: 5px
+            }
+
+        .align-left {
+            text-align: left
+        }
+
+        .align-right {
+            text-align: right
+        }
+
+        td.ui-widget-content.align-right, th.ui-widget-header.align-right {
+            border-left: 0
+        }
+
+        td.ui-widget-content.align-left, th.header.ui-widget-header.align-left {
+            border-right: 0
+        }
+
+        td.ui-widget-content.align-right, td.ui-widget-content.align-left {
+            border-bottom: 0;
+            border-top: 0
+        }
+
+        div.table {
+            display: block
+        }
+
+        table caption, div.combobox span.selectListDescription {
+            font-size: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        div.repeater {
+            border-collapse: collapse;
+            display: block
+        }
+
+            div.repeater .header {
+                margin-bottom: 5px
+            }
+
+        .template {
+            display: none
+        }
+
+        .addItem, .removeItem {
+            margin-right: 5px;
+            margin-left: 5px
+        }
+
+        .button_column {
+            min-width: 70px
+        }
+
+        div.repeater table {
+            width: 100%
+        }
+
+        div.repeater thead tr {
+            height: 40px;
+            margin-top: -25px
+        }
+
+        div.table table thead tr th {
+            padding: 4px 0 4px 0
+        }
+
+        div.repeateritem {
+            margin-bottom: 5px
+        }
+
+        .repeateritemHidden {
+            display: none
+        }
+
+        div.repeateritem .removeItem {
+            z-index: 1
+        }
+
+        tr.repeaterItemRow {
+            height: 0
+        }
+
+            tr.repeaterItemRow td {
+                border-right: 0;
+                border-left: 0
+            }
+
+        div.repeater .container .field, div.repeater .container .barcodereader {
+            margin-left: 10px;
+            padding: 5px 0 5px 0
+        }
+
+        .tablecolumncontainer .field_label {
+            display: none
+        }
+
+        .toptableheader {
+            vertical-align: top
+        }
+
+            .toptableheader .field_label {
+                display: block;
+                padding-bottom: 5px
+            }
+
+        .tablecolumncontainer {
+            padding: 5px 0 5px 5px;
+            text-align: center
+        }
+
+            .tablecolumncontainer .radiobuttongroup {
+                display: inline-block;
+                text-align: left
+            }
+
+            .tablecolumncontainer .barcodereader .button {
+                margin-right: 0
+            }
+
+        .layout_column {
+            float: left;
+            overflow: hidden;
+            height: 100%
+        }
+
+        .prevent_collapse {
+            min-height: 1px
+        }
+
+        div.footer {
+            clear: both;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-right: 2px;
+            padding-left: 2px;
+            margin-right: 6px;
+            margin-left: 6px;
+            border-color: transparent
+        }
+
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 1px
+        }
+
+        .combobox {
+            white-space: nowrap
+        }
+
+        .comboboxbutton {
+            margin: 0;
+            height: 100%;
+            right: 4px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            padding-left: 0;
+            padding-right: 0
+        }
+
+        .selectlist {
+            position: relative;
+            float: initial;
+            white-space: nowrap;
+            padding: 4px;
+            margin: 2px 2px 4px 2px
+        }
+
+            .selectlist .comboboxbutton {
+                right: 0
+            }
+
+        .rtl_date {
+            text-align: right
+        }
+
+        .action_indicator {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            z-index: 100;
+            color: #000;
+            width: 24px;
+            height: 24px
+        }
+
+        .highlight {
+            background-color: #ff0
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .ui-attach-container {
+            margin-bottom: 10px
+        }
+
+            .ui-attach-container > table {
+                width: 100%;
+                border: none;
+                border-collapse: collapse
+            }
+
+            .ui-attach-container tr {
+                border: 1px solid transparent
+            }
+
+            .ui-attach-container th, .ui-attach-container td {
+                padding: 0 3px 0 3px;
+                text-align: left;
+                border-left: 1px solid #000;
+                border-right: 1px solid #000
+            }
+
+            .ui-attach-container .sortable-sort-handle, .ui-attach-container .sortable-attachmentname-column {
+                border-left: 0;
+                border-right: 0;
+                padding-left: 0
+            }
+
+            .ui-attach-container th.sortable-attachmentname-column {
+                font-weight: normal
+            }
+
+            .ui-attach-container > table th:last-child, .ui-attach-container > table td:last-child {
+                border-right: none
+            }
+
+        tr.ui-sortable-helper {
+            display: table
+        }
+
+        .sortable-sort-handle {
+            width: 1.2em
+        }
+
+        td.sortable-sort-handle {
+            display: inline-block;
+            height: 100%;
+            font-weight: bold;
+            font-size: 1.2em;
+            vertical-align: middle;
+            text-align: center;
+            cursor: move;
+            padding: 0
+        }
+
+        tbody .sortable-attachmentname-column, tbody .sortable-attachmenttype-column {
+            word-break: break-all
+        }
+
+        .sortable-attachment-footer .selectlist {
+            display: inline-block;
+            vertical-align: sub
+        }
+
+        .upload_message {
+            padding-left: 0;
+            padding-right: 0
+        }
+
+            .upload_message .errortip {
+                display: inline-block
+            }
+
+        .show_vertical_scroll {
+            overflow-y: scroll
+        }
+
+        .section_expanded {
+            display: block
+        }
+
+        .section_collapsed {
+            display: none
+        }
+
+        span.file_input_button {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            cursor: pointer
+        }
+
+            span.file_input_button span.ui-button-text {
+                cursor: pointer
+            }
+
+        .file_input {
+            height: 100%;
+            width: 200%;
+            line-height: 30px;
+            top: 0;
+            filter: alpha(opacity=0);
+            position: absolute;
+            cursor: pointer;
+            opacity: 0
+        }
+
+            .file_input.align-right {
+                right: 0
+            }
+
+            .file_input.align-left {
+                left: 0
+            }
+
+        div.pad.field_input {
+            background-color: #fff
+        }
+
+        p.sigSpacer {
+            position: absolute;
+            bottom: 20px;
+            border-bottom: 2px solid #ccc;
+            display: block
+        }
+
+        .integrationerror {
+            padding: 10px;
+            text-align: center
+        }
+
+        .captcha-placeholder {
+            height: 100px;
+            width: 100px
+        }
+
+        .ui-button-label-wrap {
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: anywhere;
+            max-width: 99%;
+            text-align: left;
+            display: inline-block;
+            word-break: break-word;
+            -webkit-appearance: none
+        }
+
+        .hyperlink {
+            text-decoration: none
+        }
+
+        div.fmtlabel a, div.fmtlabel a.hyperlink {
+            color: inherit
+        }
+
+        .ui-datepicker-header.ui-widget-header {
+            font-size: 1.2em
+        }
+
+        .ui_dialog_cancel_button {
+            padding: .4em 1em
+        }
+
+        .hide_element {
+            display: none
+        }
+
+        .ui-menu-item.dropdown_item {
+            margin: -1px;
+            border: 1px solid transparent
+        }
+
+        div.page .ui-menu-item.dropdown_item {
+            font-size: calc(1em/.8)
+        }
+
+        .dropdown_item_image {
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            vertical-align: middle
+        }
+
+        .ui-widget-overlay.ui-front {
+            position: fixed
+        }
+
+        .remove_button_wrapper::before {
+            content: '['
+        }
+
+        .remove_button_wrapper::after {
+            content: ']'
+        }
+
+        .sortable-attachment-footer label {
+            display: block
+        }
+
+        @media screen and (max-width:768px),screen and (max-device-width:768px) {
+            div .page, div.pageheader, div.footer {
+                margin: 0;
+                padding: 0
+            }
+
+            form.form {
+                width: 100%;
+                word-wrap: break-word;
+                word-break: break-word;
+                overflow-wrap: anywhere
+            }
+        }
+    </style>
+    <style type="text/css">
+        .hsi-notificationbar {
+            position: fixed;
+            max-height: 62px;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            overflow: hidden;
+            overflow-y: auto;
+            border: none;
+            white-space: nowrap;
+            background: linear-gradient(-90deg,rgba(251,185,4,1) 0%,rgba(251,185,4,1) 40%,rgba(238,202,104,1) 100%);
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+            padding: .2em 0 .2em .2em;
+            font-family: 'Lucida Sans Unicode','Lucida Grande','sans-serif'
+        }
+
+            .hsi-notificationbar .hsi-notificationbaritem {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                height: 16.2px;
+                min-height: 1.25em;
+                color: #000;
+                border: 0;
+                max-width: 100%;
+                padding: .05em
+            }
+
+                .hsi-notificationbar .hsi-notificationbaritem span.ui-icon-alert {
+                    flex-basis: 20px;
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    background-repeat: no-repeat
+                }
+
+                .hsi-notificationbar .hsi-notificationbaritem .message-label, .hsi-notificationbar .hsi-notificationbaritem .message-text {
+                    text-overflow: ellipsis
+                }
+
+                .hsi-notificationbar .hsi-notificationbaritem .message-label {
+                    flex-basis: auto;
+                    font-weight: bold;
+                    cursor: pointer;
+                    text-decoration: underline
+                }
+
+                .hsi-notificationbar .hsi-notificationbaritem .message-text {
+                    flex-basis: 100%;
+                    font-weight: 400
+                }
+    </style>
+    <style type="text/css">
+        .dropdown_menu {
+            width: auto;
+            position: absolute;
+            display: none;
+            outline: 0
+        }
+
+        .dropdown_item {
+            cursor: pointer
+        }
+    </style>
+    <style type="text/css" media="print">
+        /*!**************************Confidential and Proprietary*****************************
+        * File Name: print.css
+        ********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
+        #form, .form {
+            min-width: 0;
+            display: block
+        }
+
+        div.page.print_break_between_pages {
+            page-break-before: always
+        }
+
+        div.page.first_page {
+            page-break-before: avoid
+        }
+
+        #header, .pageheader, #footer, .footer {
+            min-height: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            border: 0 !important
+        }
+
+        h1 {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important
+        }
+
+        div.page_hidden {
+            display: block
+        }
+
+        div.page.customaction_hidden {
+            display: none;
+            page-break-before: avoid;
+            page-break-after: avoid
+        }
+        <!--
+
+        input[type=text].field_input, textarea.field_input, --> button.comboboxbutton {
+            display: none
+        }
+
+        input[type=checkbox].field_input {
+            border: none
+        }
+
+        .layout_column > .unityformelementcontentcontainer {
+            max-width: 100%
+        }
+
+            .layout_column > .unityformelementcontentcontainer > * {
+                box-sizing: border-box;
+                max-width: 100%
+            }
+
+        div.field_print.hidden {
+            display: inline-block;
+            max-width: 100%;
+            word-wrap: break-word
+        }
+
+        .signature canvas, .signature img, .sigWrapper, .signature object, img, .drawing canvas {
+            max-width: 100%
+        }
+
+        .sigWrapper {
+            padding-bottom: 7px
+        }
+
+        div.section div.container {
+            display: block !important
+        }
+
+        .navigation, .ui-button, .ui-button-text, .tool, .swatch, .thickness, span.button.file_input_button, .barcodereader {
+            display: none
+        }
+
+        .sigNav {
+            display: none !important
+        }
+
+        div.page.unityformelementcontainer {
+            min-height: 0
+        }
+
+        .field, .section, .panel, .paragraph, div.repeater div.section, div.repeater div.section div.header, div.repeater thead tr th.header, div.repeater thead tr td.header, div.table, div.repeater, div.nestedtable {
+            page-break-inside: avoid
+        }
+
+        .first_page > div.table:first-child, .first_page > div.repeater:first-child, .first_page > div.nestedtable:first-child, .print_break_between_pages > div.table:first-child, .print_break_between_pages > div.repeater:first-child, .print_break_between_pages > div.nestedtable:first-child {
+            page-break-inside: auto
+        }
+
+        div.section div.section_expanded > .unityformelement:first-child {
+            page-break-inside: auto
+        }
+
+        div.section div.header, div.repeater div.section div.header {
+            page-break-after: avoid
+        }
+
+        div.repeater thead tr {
+            border-collapse: collapse
+        }
+
+        th.button_column, td.button_column {
+            min-width: 0
+        }
+
+        tr.columnHeader.hidden {
+            display: table-row
+        }
+
+        tbody.ui-collapsible.hidden {
+            display: table-row-group
+        }
+
+        .signature .modalButtonText {
+            display: none
+        }
+
+        .prevent_print {
+            display: none !important
+        }
+
+        .captcha {
+            display: none
+        }
+
+        .remove_button_wrapper {
+            display: none
+        }
+
+        .sortable-attachment-footer {
+            display: none
+        }
+
+        .sortable-action-column {
+            display: none
+        }
+
+        .sortable-attachmenttype-column {
+            border: none !important
+        }
+
+        .sortable-sort-handle {
+            display: none !important
+        }
+
+        @media print {
+            @page {
+                size: landscape
+            }
+        }
+    </style>
+    <style type="text/css">
+        /* Component containers
+        ----------------------------------*/
+        .ui-widget {
+            font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+        }
+
+            .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+                font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+                font-size: 1em;
+            }
+
+        .ui-widget-content {
+            border: 2px solid rgb(7, 81, 146);
+            border-radius: 0px 0px 5px 5px;
+            background: #ffffff none 50% bottom repeat-x;
+            color: #4d4f53;
+        }
+
+            .ui-widget-content a {
+                color: #4d4f53;
+            }
+
+        .ui-widget-header {
+            border: 1px solid #ffffff;
+            background: #4f8abd none 50% 50% repeat-x;
+            color: #ffffff;
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+            .ui-widget-header a {
+                color: #15428b;
+            }
+
+        /* Interaction states
+        ----------------------------------*/
+        .ui-state-default, .ui-widget-content .ui-state-default {
+            border-top: 2px solid rgb(7, 81, 146);
+            border-right: 2px solid rgb(7, 81, 146);
+            border-left: 2px solid rgb(7, 81, 146);
+            border-radius: 5px 5px 0 0;
+            color: #ffffff;
+            outline: none;
+        }
+
+        .ui-widget-header .ui-state-default {
+            border: 1px solid #4f8abd;
+            background: #fcfdfd none 50% 50% repeat-x;
+            font-weight: bold;
+            color: #ffffff;
+            outline: none;
+        }
+
+        .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+            color: #4d4f53;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, div.ui-menu-item-wrapper.ui-state-active {
+            border: 1px solid #4f8abd;
+            background: #0b78d1 none 50% 50% repeat-x;
+            font-weight: bold;
+            color: #ffffff;
+            outline: none;
+        }
+
+            .ui-widget-header .ui-state-hover a {
+                color: #ffffff;
+                text-decoration: none;
+                outline: none;
+            }
+
+        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+            border: 1px solid #4f8abd;
+            background: #fcfdfd none 50% 50% repeat-x;
+            font-weight: bold;
+            color: #0b78d1;
+            outline: none;
+        }
+
+            .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+                color: #1f5f8e;
+                outline: none;
+                text-decoration: none;
+            }
+
+                .ui-state-active a.page_tab, .ui-state-active a.page_tab:link, .ui-state-active a.page_tab:visited {
+                    color: #0b78d1;
+                    outline: none;
+                    text-decoration: none;
+                }
+
+        .ui-widget :active {
+            outline: none;
+        }
+
+        /* Interaction Cues
+        ----------------------------------*/
+        .ui-state-highlight, .ui-widget-content .ui-state-highlight {
+            border: 1px solid #fb8f3d;
+            background: #fbc84f none 50% top repeat-x;
+            color: #185381;
+        }
+
+            .ui-state-highlight a, .ui-widget-content .ui-state-highlight a {
+                color: #185381;
+            }
+
+        .ui-state-error, .ui-widget-content .ui-state-error, .pageheader .ui-state-error, .footer .ui-state-error {
+            border: 1px solid #b73838;
+            background: #d29d9d none 50% top repeat-x;
+            color: #b73838;
+        }
+
+            .ui-state-error a, .ui-widget-content .ui-state-error a, .pageheader .ui-state-error a, .footer .ui-state-error a {
+                color: #b73838;
+            }
+
+        .ui-state-error-text, .ui-widget-content .ui-state-error-text, .pageheader .ui-state-error-text, .footer .ui-state-error-text {
+            color: #b73838;
+        }
+
+        .ui-state-disabled, .ui-widget-content .ui-state-disabled {
+            opacity: .35;
+            filter: Alpha(Opacity=35);
+            background-image: none;
+        }
+
+        .ui-priority-primary, .ui-widget-content .ui-priority-primary {
+            font-weight: bold;
+        }
+
+        .ui-priority-secondary, .ui-widget-content .ui-priority-secondary {
+            opacity: .7;
+            filter: Alpha(Opacity=70);
+            font-weight: normal;
+        }
+
+        .ui-menu {
+            border: 1px solid #0b78d1;
+            background: #fcfdfd none 50% bottom repeat-x;
+            color: #4d4f53;
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.2em;
+        }
+
+        .ui-button, .ui-widget-content .ui-button {
+            background: #ffffff;
+            color: #d10b0b;
+            border: 1px solid #d10b0b
+        }
+
+        .ui-buttonS, .ui-widget-contentS .ui-buttonS {
+            background: #2f780a;
+            color: #ffffff;
+            border: 1px solid #2f780a
+        }
+
+        .ui-button {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        .ui-buttonS {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        .ui-widget-content .ui-button a {
+            color: #0b78d1;
+        }
+
+        .ui-widget-content .comboboxbutton {
+            background: #ffffff;
+            color: #0b78d1;
+            border: 1px solid #0b78d1
+        }
+
+        input.ui-state-default.ui-button.addItem {
+            border-color: #ffffff;
+        }
+
+        input.ui-state-default.ui-buttonS.addItem {
+            border-color: #ffffff;
+        }
+
+        input.ui-state-default.ui-button.removeItem {
+            border-color: #0b78d1;
+        }
+
+        .top_table input.ui-state-default.ui-button {
+            background: #4f8abd;
+            color: #ffffff;
+        }
+
+        .sub_table input.ui-state-default.ui-button {
+            background: #2a4f6f;
+            color: #ffffff;
+        }
+
+        input.ui-state-default.ui-button:hover, input.ui-state-default.ui-button:focus {
+            background: #d10b0b;
+            color: #ffffff;
+        }
+
+        input.ui-state-default.ui-buttonS:hover, input.ui-state-default.ui-buttonS:focus {
+            background: #2f780a;
+            color: #ffffff;
+        }
+
+        .ui-button:hover, .ui-button:focus, .ui-widget-content .ui-button:hover, span.file_input_button.file_input_focused {
+            background: #0b78d1;
+            color: #ffffff;
+            border: 1px solid #0b78d1
+        }
+
+        .ui-widget-content .comboboxbutton:hover {
+            background: #0b78d1;
+            color: #ffffff;
+            border: 1px solid #0b78d1
+        }
+
+        .ui-widget-content .ui-button:hover a {
+            color: #ffffff;
+        }
+
+        .comboboxbutton {
+            font-size: 1.2em;
+        }
+
+        .modalButton:hover {
+            border: 3px solid #0b78d1;
+        }
+
+        .modalButtonText p {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1em;
+        }
+        /* Non- jQuery UI based Elements
+        ----------------------------------*/
+        body {
+            background: #ffffff;
+        }
+
+        th.header.title_column:hover, th.header.title_column:hover + td.header.button_column {
+            background: #0b78d1 none 50% 50% repeat-x;
+            font-weight: bold;
+            color: #ffffff;
+            outline: none;
+        }
+
+        table.top_table thead tr th.header, table.top_table thead tr td.header {
+            background: #4f8abd;
+            color: #ffffff;
+        }
+
+        table.sub_table thead tr th.header, table.sub_table thead tr td.header {
+            background-color: #2a4f6f;
+            color: #ffffff;
+        }
+
+        .header {
+            background: #4f8abd;
+            color: #ffffff;
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        table.top_table th.header.ui-widget-header, table.top_table td.header.ui-widget-header, table.top_table {
+            border-color: #4f8abd;
+        }
+
+        table.sub_table th.header.ui-widget-header, table.sub_table td.header.ui-widget-header, table.sub_table {
+            border-color: #2a4f6f;
+        }
+
+        th.header.ui-widget-header, td.header.ui-widget-header, table.top_table, table.sub_table {
+            border-color: #4f8abd;
+        }
+
+        div.pageheader {
+            background: #ffffff;
+            color: #4f8abd;
+        }
+
+            div.pageheader a, .footer a {
+                color: #4f8abd
+            }
+
+        h1 {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.6em;
+        }
+
+        p, span.paragraph {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        .field_label {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        .field_input, .field_print {
+            background: #fcfdfd;
+            color: #4d4f53;
+            border: 2px solid rgb(7, 81, 146);
+            border-radius: 5px;
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.2em;
+        }
+
+        .attached_document {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.2em;
+        }
+
+        .required::after, .required-before::before {
+            color: #ff0000;
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        .pageheader .displaystyle_label label {
+            color: #4d4f53;
+        }
+
+        .pageheader .displaystyle_label span.field_input {
+            background: #ffffff;
+            color: #4d4f53;
+        }
+
+        .page .displaystyle_label label, .page th.tablecolumnheader.displaystyle_label {
+            color: #4d4f53;
+        }
+
+        .page .displaystyle_label span.field_input {
+            background: #ffffff;
+            color: #4d4f53;
+        }
+
+        .footer .displaystyle_label label {
+            color: #4d4f53;
+        }
+
+        .footer .displaystyle_label span.field_input {
+            background: #ffffff;
+            color: #4d4f53;
+        }
+
+        input:focus.field_input, textarea:focus.field_input {
+            background: #fcfdfd;
+            color: #4d4f53;
+        }
+
+        .field_label.reverse_lookup, th.tablecolumnheader.reverse_lookup {
+            color: #4d4f53;
+        }
+
+        .field_input.reverse_lookup {
+            background: #fcfdfd;
+            color: #4d4f53;
+            border: 1px solid #0b78d1;
+        }
+
+        input:focus.field_input.reverse_lookup, textarea:focus.field_input.reverse_lookup {
+            background: #fcfdfd;
+            color: #0b78d1;
+        }
+
+        .footer {
+            background: #ffffff;
+            color: #4f8abd;
+        }
+
+        .navigation {
+            background: #ffffff;
+            color: #4f8abd;
+            border: 1px solid #ffffff;
+        }
+
+        .tablecolumnheader {
+            background-color: #ffffff;
+            color: #4d4f53;
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        .ui-errorlistbackground {
+            background: #f9f77c;
+        }
+
+        .ui-validationfailed {
+            color: #b73838;
+        }
+
+        .ui-validationpassed {
+            color: #4d4f53;
+        }
+
+        input.readonly, textarea.readonly {
+            background: #eeeeee;
+            color: #999999;
+        }
+
+        label.readonly {
+            color: #999999;
+        }
+
+        .integrationerror {
+            background: #f9f77c;
+            color: #b73838;
+        }
+
+        .radiobuttonoption_label {
+            color: #4d4f53;
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        input.radiobutton_option, input.radiobutton_option:focus {
+            background: none;
+        }
+
+        .attachment .attached > a, tbody .sortable-attachmentname-column > a {
+            color: #0052cc;
+        }
+
+        .attachment a.remove-link {
+            color: #b73838;
+        }
+    </style>
+    <style type="text/css">
+        span.uffmt_0 {
+            font-weight: bold;
+            font-size: 1.8em;
+            color: #3f77a7;
+        }
+
+        span.uffmt_1 {
+            font-weight: bold;
+            color: #000000;
+        }
+
+        span.uffmt_2 {
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        span.uffmt_3 {
+            font-weight: bold;
+            font-size: 0.95em;
+            color: #494949;
+        }
+
+        span.uffmt_4 {
+            font-weight: bold;
+        }
+
+        span.uffmt_5 {
+            color: #ffffff;
+        }
+
+        span.uffmt_6 {
+            font-weight: bold;
+            color: #494949;
+        }
+
+        span.uffmt_7 {
+            font-weight: bold;
+            color: #c0504d;
+        }
+
+        span.uffmt_8 {
+            font-weight: bold;
+            font-size: 1.8em;
+            color: #4f8abd;
+        }
+    </style>
+    <style type="text/css">
+    </style>
+    <script type="text/javascript">
+        var translatedStrings = {
+            'STR_UC_UFORMS_INVALID_FIELD_ERROR': 'Um ou mais campos são inválidos.'
+            , 'STR_UC_UFORMS_REMOVE': 'Remover'
+            , 'STR_UC_UFORMS_REMOVE_TOOLTIP': 'Remover o link do formulário.'
+            , 'STR_UC_UFORMS_PENDING': '(Pendente)'
+            , 'STR_UC_UFORMS_SAVING_TITLE': 'Salvando formulário'
+            , 'STR_UC_UFORMS_SAVING_MESSAGE': 'O formulário está sendo salvo.'
+            , 'STR_UC_UFORMS_FORMSTOREDWITHWARNINGS': 'Os seguintes avisos ocorreram ao enviar o formulário.  O formulário foi armazenado com êxito.'
+            , 'STR_UC_UFORMS_ERROR_SAVING': 'Erro ao salvar o formulário.'
+            , 'STR_UC_UFORMS_INFINITELOOP': 'Loop infinito foi detectado nas ações personalizadas.  Anulando a ação atual.'
+            , 'STR_UC_UFORMS_SELECTKEYSET': 'Selecionar conjunto de chaves'
+            , 'STR_UC_UFORMS_SELECT': 'Selecionar'
+            , 'STR_UC_UFORMS_REVERSELOOKUP_NOMATCHESFORSEARCH': 'Não há correspondências de pesquisa reversa encontrados para os campos de pesquisa especificados.'
+            , 'STR_UC_UFORMS_REVERSELOOKUP_NOSEARCHVALUES': 'Não há valores de pesquisa inseridos nos campos de pesquisa reversa.'
+            , 'STR_UC_UFORMS_REVERSELOOKUP_SELECTMATCH': 'Selecione a correspondência de pesquisa de reversa'
+            , 'STR_RC_SUN': 'Do'
+            , 'STR_RC_MON': 'Se'
+            , 'STR_RC_TUE': 'Te'
+            , 'STR_RC_WED': 'Qu'
+            , 'STR_RC_THU': 'Qu'
+            , 'STR_RC_FRI': 'Se'
+            , 'STR_RC_SAT': 'Sá'
+            , 'STR_UC_UFORMS_SUNDAY': 'Domingo'
+            , 'STR_UC_UFORMS_MONDAY': 'Segunda-feira'
+            , 'STR_UC_UFORMS_TUESDAY': 'Terça-feira'
+            , 'STR_UC_UFORMS_WEDNESDAY': 'Quarta-feira'
+            , 'STR_UC_UFORMS_THURSDAY': 'Quinta-feira'
+            , 'STR_UC_UFORMS_FRIDAY': 'Sexta-feira'
+            , 'STR_UC_UFORMS_SATURDAY': 'Sábado'
+            , 'STR_RC_JANUARY': 'Jan'
+            , 'STR_RC_FEBRUARY': 'Fev'
+            , 'STR_RC_MARCH': 'Mar'
+            , 'STR_RC_APRIL': 'Abr'
+            , 'STR_RC_MAY': 'Mai'
+            , 'STR_RC_JUNE': 'Jun'
+            , 'STR_RC_JULY': 'Jul'
+            , 'STR_RC_AUGUST': 'Ago'
+            , 'STR_RC_SEPTEMBER': 'Set'
+            , 'STR_RC_OCTOBER': 'Out'
+            , 'STR_RC_NOVEMBER': 'Nov'
+            , 'STR_RC_DECEMBER': 'Dez'
+            , 'STR_UC_UFORMS_NEXT': 'Avançar'
+            , 'STR_UC_UFORMS_PREV': 'Anterior'
+            , 'STR_UC_UFORMS_OK': 'OK'
+            , 'STR_UC_UFORMS_TODAY': 'Hoje'
+            , 'STR_UC_UFORMS_REQUIRED_ERROR': 'Este campo é obrigatório.'
+            , 'STR_UC_UFORMS_CURRENCY_ERROR': 'O valor da moeda positivo\u002fnegativo deve estar no formato:'
+            , 'STR_UC_UFORMS_VALUEMUSTEXIST_ERROR': 'O valor deve existir no conjunto de dados.'
+            , 'STR_UC_UFORMS_ENTERTEXT': 'Inserir texto'
+            , 'STR_UC_UFORMS_CANCEL': 'Cancelar'
+            , 'STR_UC_UFORMS_UPLOADFAILED': 'Erro ao carregar.'
+            , 'STR_UC_UFORMS_FILE_UPLOADFAILED': 'Erro ao carregar arquivo: \u0022{0}\u0022'
+            , 'STR_UC_UFORMS_FILE_UPLOADSUCCESS': '\u0022{0}\u0022 foi carregado com êxito.'
+            , 'STR_UC_UFORMS_INITIAL_UPLOAD_STATUS': 'Iniciando carregamento...'
+            , 'STR_UC_UFORMS_BARCODEREADFAILED': 'Erro ao ler o código de barras.'
+            , 'STR_UC_UFORMS_BARCODEREADSUCCESS': 'O código de barras foi lido com êxito.'
+            , 'STR_UC_UFORMS_ERROR_EXECUTEUNITYSCRIPT': 'Erro ao executar um script do Unity.'
+            , 'STR_UC_UFORMS_VIEWATTACHEDDOCUMENTTOOLTIP': 'Clique aqui para exibir o documento anexado.'
+            , 'STR_UC_UFORMS_PREVIEWATTACHEDDOCUMENTTOOLTIP': 'Clique aqui para visualizar o documento em anexo.'
+            , 'STR_UC_UFORMS_ATTACHMENT_NEWFILEUPLOAD': 'Novo arquivo'
+            , 'STR_UC_UFORMS_ATTACHMENT_EXISTINGFILEUPLOAD': 'Documento existente'
+            , 'STR_UC_UFORMS_ATTACHMENT_BUTTON_TOOLTIP': 'Adicionar anexos ao campo para o tipo de anexo {0}.'
+            , 'STR_UC_UFORMS_ATTACHMENT_BUTTON_READONLY_TOOLTIP': 'O campo está marcado como somente leitura, nenhum anexo pode ser adicionado.'
+            , 'STR_UC_UFORMS_ATTACHMENT_BUTTON_FULFILLED_TOOLTIP': 'Todos os anexos permitidos foram adicionados para o tipo de anexo {0}.'
+            , 'STR_UC_UFORMS_ATTACHMENT_SORTINSTRUCTION': 'Pressione a barra de espaços para selecionar este anexo e use as teclas de seta para reorganizar.'
+            , 'STR_UC_UFORMS_TIME': 'Hora:'
+            , 'STR_UC_UFORMS_ATTACHED_DOCUMENT': 'Documentos adquirido'
+        };
+    </script>
+</head>
+<body>
+    <header style="margin-bottom: 2.5em;">
+        <img src="Imagens/hmv.png" alt="hmv">
+        <img src="Imagens/onbase.png" alt="onbase">
+        <img src="Imagens/power.png" alt="power" style="margin-bottom: 2.5em;">  
+    </header>
+    <form id="form" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit form" method="post">
+        <div style="border-radius: 5px;" id="page2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer page ui-widget-content print_break_between_pages">
+            <div id="panel112" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                <div id="panel112_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 85%;">
+                    <div id="panel112_column1_container" class="unityformelementcontentcontainer ">
+                        <div id="paragraph115" dir="ltr" class="unityformelement containerFloatInherit">
+                            <span class="paragraph no-label-overflow"><span id="logo" class="uffmt_8" style="color: rgb(7, 81, 146)">Ordem de Serviço</span></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="panel112_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 15%;">
+                  <div id="panel112_column2_container" class="unityformelementcontentcontainer ">
+                    <div id="image116" class="unityformelement containerFloatInherit">
+                      <img src="30662" alt="" />
+                    </div>
+                  </div>
+                </div> -->
+            </div>
+            <div id="section83" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+
+                <div style="border-radius: 5px;" id="section83_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="panel84" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="panel84_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column1_container" class="campoIdentificacao unityformelementcontentcontainer">
+                                <div id="SolicitacaoServicoP2" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="ordemServico" class="field_label bold_label">Número Ordem de Serviço:</label>
+                                    <input name="SolicitacaoServicoP2_input" id="ordemServico" type="text" aria-required="false" tabindex="0" size="100" class="readonly field_print field_input ui-widget-content" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel84_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column2_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="DataSolicitacaoP2" dir="ltr" class="unityformelement containerFloatInherit field">
+                                    <label for="solicitacao_Data" class="field_label bold_label">Data da Solicitação:</label>
+                                    <input name="DataSolicitacaoP2_input" id="solicitacao_Data" type="text" aria-required="false" readonly="readonly" tabindex="0" size="100" dir="ltr" aria-describedby="DataSolicitacaoP2_descriptionText" class="readonly field_input ui-widget-content" value="" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel84_column3" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column3_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="SolicitanteP2" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Solicitante" class="field_label bold_label">Solicitante:</label>
+                                    <input name="SolicitanteP2_input" id="Solicitante" type="text" aria-required="false" tabindex="0" size="100" readonly="readonly" class="field_input ui-widget-content readonly" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel84_column4" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column4_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="campocalculado777" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Setor_Projeto" class="field_label bold_label">Setor/projeto</label>
+                                    <input type="text" size="100" readonly="readonly" value="" id="Setor_Projeto" tabindex="0" name="campocalculado777_input" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel84_coluna5" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_coluna5_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="campocalculado778" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="UnidadeHMV" class="field_label bold_label">Unidade HMV</label>
+                                    <input type="text" size="100" readonly="readonly" value="" tabindex="0" id="UnidadeHMV" name="campocalculado778_input" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="section93" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label">Informações relevantes para a emissão da nota fiscal de serviços:</span>
+                    </h2>
+                </div>
+                <div id="section93_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel771" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel771_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column prevent_collapse" style="width: 50%;">
+                            <div id="painel771_coluna1_container" class="unityformelementcontentcontainer ">
+                                <div style="color: rgb(7, 81, 146); font-weight: bold;" id="parágrafo779" dir="ltr" class="unityformelement containerFloatInherit">
+                                    <span class="paragraph no-label-overflow">A Associação Hospitalar Moinhos de Vento é substituto tributário do ISSQN (matriz e filiais).</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Data limite para emissão das notas fiscais - dia 25 de cada mês; se não for dia útil antecipa data.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Data limite para inserção da nota fiscal no portal do fornecedor - até o primeiro dia útil após a emissão;</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Notas fiscais com emissão após essas datas não serão recepcionadas no portal, sendo assim, devem ser emitidas na competência seguinte.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Não serão recepcionadas no portal notas substituídas ou de outra competência.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="painel771_coluna2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column prevent_collapse" style="width: 50%;">
+                            <div id="painel771_coluna2_container" class="unityformelementcontentcontainer ">
+                                <div style="color: rgb(7, 81, 146); font-weight: bold;" id="parágrafo774" dir="ltr" class="unityformelement containerFloatInherit">
+                                    <span class="paragraph no-label-overflow">Na descrição do serviço prestado deve obrigatoriamente ter a informação do número da ordem de serviço.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Após a emissão da nota fiscal é necessário realizar o upload do xml e o pdf do documento fiscal.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Se o tipo de pagamento for depósito bancário a conta precisa ser da mesma titularidade do emissor da nota fiscal.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Importante que toda atualização cadastral seja realizada tempestivamente, através do formulário disponibilizado (link)</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="seção756" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label"></span>
+                    </h2>
+                </div>
+                <div id="seção756_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel763" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel763_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 98%;">
+                            <div id="painel763_coluna1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                                <div id="caixadetexto_Fornecedor" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Fornecedor_Nome" class="field_label bold_label">Fornecedor</label>
+                                    <input name="caixadetexto_Fornecedor_input" id="Fornecedor_Nome" type="text" aria-required="false" tabindex="0" size="45" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="265" value="" />
+
+                                </div>
+                                <div id="caixadetexto_Fornecedor_CNPJ" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Fornecedor_CNPJ" class="field_label bold_label">CNPJ</label>
+                                    <input name="caixadetexto_Fornecedor_CNPJ_input" id="Fornecedor_CNPJ" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" value="" />
+
+                                </div>
+                                <div id="caixadetexto_Fornecedor_Endereco" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Fornecedor_Endereco" class="field_label bold_label">Endereço</label>
+                                    <input name="caixadetexto_Fornecedor_Endereco_input" id="Fornecedor_Endereco" type="text" aria-required="false" tabindex="0" size="100" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="250" value="" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="seção755" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label"></span>
+                    </h2>
+                </div>
+                <div id="seção755_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel760" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel760_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 98%;">
+                            <div id="painel760_coluna1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                                <div id="caixadetexto_Comprador" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Comprador_Nome" class="field_label bold_label">Comprador</label>
+                                    <input name="caixadetexto_Comprador_input" id="Comprador_Nome" type="text" aria-required="false" tabindex="0" size="45" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="265" value="" />
+
+                                </div>
+                                <div id="caixadetexto_Comprador_CNPJ" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Comprador_CNPJ" class="field_label bold_label">CNPJ</label>
+                                    <input name="caixadetexto_Comprador_CNPJ_input" id="Comprador_CNPJ" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="250" value="92.685.833/0001-51" />
+
+                                </div>
+                                <div id="caixadetexto_Comprador_Endereco" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Comprador_Endereco" class="field_label bold_label">Endereço</label>
+                                    <input name="caixadetexto_Comprador_Endereco_input" id="Comprador_Endereco" type="text" aria-required="false" tabindex="0" size="100" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="250" value="RUA RAMIRO BARCELOS, 910 - MOINHOS DE VENTO - CEP 90035-001" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="seção754" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label">Local da Execução do Serviço</span>
+                    </h2>
+                </div>
+                <div id="seção754_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="caixadetextodemultilinhas_Local" dir="ltr" class="unityformelement readonly containerFloatInherit field multiline">
+                        <label for="Servico_Execucao" class="field_label bold_label"></label>
+                        <textarea rows="2" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" name="caixadetextodemultilinhas_Local_input" id="Servico_Execucao" aria-required="false"></textarea>
+
+                    </div>
+                </div>
+            </div>
+            <div id="seção757" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label">Descrição do Serviço</span>
+                    </h2>
+                </div>
+                <div id="seção757_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="caixadetextodemultilinhas_DescricaoServico" dir="ltr" class="unityformelement readonly containerFloatInherit field multiline">
+                        <label for="Servico_Descricao" class="field_label bold_label"></label>
+                        <textarea rows="2" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" name="caixadetextodemultilinhas_DescricaoServico_input" id="Servico_Descricao" aria-required="false"></textarea>
+
+                    </div>
+                </div>
+            </div>
+            <div id="seção773" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label"></span>
+                    </h2>
+                </div>
+                <div id="seção773_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel768" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel768_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 98%;">
+                            <div id="painel768_coluna1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                                <div id="campocalculado770" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="CondicaoPagamento" class="field_label bold_label">Condição de Pagamento (Dias)</label>
+                                    <input type="text" readonly="readonly" value="" tabindex="0" name="campocalculado770_input" id="CondicaoPagamento" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                                <div id="caixadetexto_diasPedidos" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="DiasPedidos" class="field_label bold_label">Dias Pedidos</label>
+                                    <input name="caixadetexto_diasPedidos_input" id="DiasPedidos" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" />
+
+                                </div>
+                                <div id="campocalculado771" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Periodo_Entrega" class="field_label bold_label">Periodo p\ Entrega</label>
+                                    <input type="text" size="30" readonly="readonly" value=" à " tabindex="0" name="campocalculado771_input" id="Periodo_Entrega" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                                <div id="caixadetexto_ValorTotal" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Valor_Os" class="field_label bold_label">Valor Total (R$)</label>
+                                    <input name="caixadetexto_ValorTotal_input" id="Valor_Os" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" />
+
+                                </div>
+                                <div id="campocalculado_Fornecedor_adiantamento" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="ValorAdiantamento" class="field_label bold_label">Valor Adiantamento (R$)</label>
+                                    <input type="text" readonly="readonly" value="" tabindex="0" name="campocalculado_Fornecedor_adiantamento_input" id="ValorAdiantamento" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                                <div id="campocalculado_Fornecedor_nPropostaComercial" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="NumeroProposta" class="field_label bold_label">Número da Proposta Comercial</label>
+                                    <input type="text" readonly="readonly" value="" tabindex="0" name="campocalculado_Fornecedor_nPropostaComercial_input" id="NumeroProposta" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="InicioServico" dir="ltr" class="unityformelement containerFloatInherit field datepicker">
+                <label for="InicioServico_input" class="field_label bold_label">Início do Serviço</label>
+                <input id="InicioServico_input" type="date" aria-required="false" tabindex="0" dir="ltr" aria-describedby="InicioServico_descriptionText" class="field_input ui-widget-content" onchange="validateData()" required=required />
+
+            </div>
+            <div id="panel_confirmarRecusar" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                <div id="panel105_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
+                    <div id="panel105_column1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                        <div dir="ltr" class="unityformelement containerFloatInherit formbutton">
+                            <input id="RecusarOrdem" type="button" tabindex="0" value="Recusar Ordem" class="bold_label button ui-state-default ui-button-label-wrap ui-button" onclick="sendData('Recusado')" />
+                        </div>
+                        <div dir="ltr" class="unityformelement containerFloatInherit formbutton">
+                            <input type="button" id="AceitarOrdem" tabindex="0" value="Aceitar Ordem" class="" onclick="sendData('Aceito')" disabled=disabled />
+                        </div>
+                        <span class="field_label bold_label" style="color: rgb(7, 81, 146);">*Para habilitar o botão de aceitação, obrigatório preencher a data de início do serviço</span>
+
+                        <div dir="ltr" class="unityformelement containerFloatInherit formbutton">
+
+                        </div>
+
+                        <!-- <div id="ConfirmaFornecedor" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
+      <input type="submit" tabindex="0" value="Confirma Escolha?" class="bold_label button ui-state-default ui-button-label-wrap ui-button" disabled="disabled" />
+    </div> -->
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="botãodeimpressão" dir="ltr" class="unityformelement containerFloatInherit printbutton formbutton">
+              <input type="button" tabindex="0" value="Imprimir Ordem de Serviço" class="bold_label button ui-state-default ui-button-label-wrap ui-button" disabled="disabled" />
+            </div> -->
+        </div>
+        <div id="footer" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer footer ui-widget-content"></div>
+    </form>
+    <footer>
+        <p>Power Imaging<sup>&copy;</sup> 2024</p>
+    </footer>
+</body>
+</html>
