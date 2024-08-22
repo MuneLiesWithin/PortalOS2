@@ -92,13 +92,11 @@ label {
 .anexos {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 #panel39 {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 
