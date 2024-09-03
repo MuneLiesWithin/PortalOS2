@@ -3,52 +3,44 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=11" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>OS - NOTAS FISCAIS CONTABILIDADE -DEV</title>
+    <title>Ordem de Servi&#231;o - Solicita&#231;&#227;o de Servi&#231;o</title>
     <link rel="shortcut icon" href="Imagens/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="./Scripts/jquery-3.7.0.min.js"></script>
     <script type="text/javascript" src="./Scripts/notify.min.js"></script>
-    <script type="text/javascript" src="./Scripts/validateAnexo.js"></script>
-    <script type="text/javascript" src="./Scripts/convertTXTtoXML.js"></script>
-    <script type="text/javascript" src="./Scripts/loading.js"></script>
-    <script type="text/javascript" src="./config.js?202405311253"></script>
-    <script type="text/javascript" src="./notafiscal.js"></script>
-    <script type="text/javascript" src="./feriados.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="./Scripts/loading.css" />
+    <script type="text/javascript" src="./config.js?202312151036"></script>
+    <script type="text/javascript" src="./ordemservico.js"></script>
     <link rel="stylesheet" type="text/css" href="./Scripts/styles2.css" />
-
-
     <style type="text/css">
         /*!
-                                The OnBase Information Management System incorporates jQuery UI software,
-                                which is available in source code form at http://jqueryui.com/ pursuant
-                                the terms of the below MIT license.  The following MIT licensing terms
-                                and copyright notice apply only to the jQuery UI software:
+        The OnBase Information Management System incorporates jQuery UI software,
+        which is available in source code form at http://jqueryui.com/ pursuant
+        the terms of the below MIT license.  The following MIT licensing terms
+        and copyright notice apply only to the jQuery UI software:
 
-                                Copyright (c) 2010 Paul Bakaus, http://jqueryui.com/
+        Copyright (c) 2010 Paul Bakaus, http://jqueryui.com/
 
-                                This software consists of voluntary contributions made by many individuals
-                                (AUTHORS.txt, http://jqueryui.com/about) For exact contribution history, see
-                                the revision history and logs, available at http://jquery-ui.googlecode.com/svn/
+        This software consists of voluntary contributions made by many individuals
+        (AUTHORS.txt, http://jqueryui.com/about) For exact contribution history, see
+        the revision history and logs, available at http://jquery-ui.googlecode.com/svn/
 
-                                Permission is hereby granted, free of charge, to any person obtaining a copy
-                                of this software and associated documentation files (the "Software"), to deal
-                                in the Software without restriction, including without limitation the rights
-                                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-                                copies of the Software, and to permit persons to whom the Software is
-                                furnished to do so, subject to the following conditions:
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
 
-                                The above copyright notice and this permission notice shall be included in
-                                all copies or substantial portions of the Software.
+        The above copyright notice and this permission notice shall be included in
+        all copies or substantial portions of the Software.
 
-                                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-                                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-                                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-                                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-                                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-                                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-                                THE SOFTWARE.
-                                */
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+        THE SOFTWARE.
+        */
         .wait-cursor {
             cursor: wait;
         }
@@ -893,8 +885,8 @@
     </style>
     <style type="text/css">
         /*!**************************Confidential and Proprietary*****************************
-                                * File Name: form.css
-                                ********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
+        * File Name: form.css
+        ********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
         div.field_print.hidden {
             white-space: pre-wrap;
             border: none
@@ -1759,14 +1751,8 @@
     </style>
     <style type="text/css" media="print">
         /*!**************************Confidential and Proprietary*****************************
-                                * File Name: print.css
-                                ********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
-        @media print {
-            @page {
-                size: landscape
-            }
-        }
-
+        * File Name: print.css
+        ********************Copyright (c) Hyland Software, Inc. 1991-2017********************/
         #form, .form {
             min-width: 0;
             display: block
@@ -1803,8 +1789,9 @@
             page-break-before: avoid;
             page-break-after: avoid
         }
+        <!--
 
-        <!-- input[type=text].field_input, textarea.field_input, --> button.comboboxbutton {
+        input[type=text].field_input, textarea.field_input, --> button.comboboxbutton {
             display: none
         }
 
@@ -1914,10 +1901,16 @@
         .sortable-sort-handle {
             display: none !important
         }
+
+        @media print {
+            @page {
+                size: landscape
+            }
+        }
     </style>
     <style type="text/css">
         /* Component containers
-                                ----------------------------------*/
+        ----------------------------------*/
         .ui-widget {
             font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
         }
@@ -1951,13 +1944,12 @@
             }
 
         /* Interaction states
-                                ----------------------------------*/
+        ----------------------------------*/
         .ui-state-default, .ui-widget-content .ui-state-default {
             border-top: 2px solid rgb(7, 81, 146);
             border-right: 2px solid rgb(7, 81, 146);
             border-left: 2px solid rgb(7, 81, 146);
             border-radius: 5px 5px 0 0;
-            background: #4f8abd none 50% 50% repeat-x;
             color: #ffffff;
             outline: none;
         }
@@ -2015,7 +2007,7 @@
         }
 
         /* Interaction Cues
-                                ----------------------------------*/
+        ----------------------------------*/
         .ui-state-highlight, .ui-widget-content .ui-state-highlight {
             border: 1px solid #fb8f3d;
             background: #fbc84f none 50% top repeat-x;
@@ -2063,14 +2055,25 @@
             font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
             font-size: 1.2em;
         }
-        
+
         .ui-button, .ui-widget-content .ui-button {
             background: #ffffff;
-            color: #0b78d1;
-            border: 1px solid #0b78d1
+            color: #d10b0b;
+            border: 1px solid #d10b0b
         }
-        
+
+        .ui-buttonS, .ui-widget-contentS .ui-buttonS {
+            background: #2f780a;
+            color: #ffffff;
+            border: 1px solid #2f780a
+        }
+
         .ui-button {
+            font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+            font-size: 1.0em;
+        }
+
+        .ui-buttonS {
             font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
             font-size: 1.0em;
         }
@@ -2089,6 +2092,10 @@
             border-color: #ffffff;
         }
 
+        input.ui-state-default.ui-buttonS.addItem {
+            border-color: #ffffff;
+        }
+
         input.ui-state-default.ui-button.removeItem {
             border-color: #0b78d1;
         }
@@ -2104,7 +2111,12 @@
         }
 
         input.ui-state-default.ui-button:hover, input.ui-state-default.ui-button:focus {
-            background: #0b78d1;
+            background: #d10b0b;
+            color: #ffffff;
+        }
+
+        input.ui-state-default.ui-buttonS:hover, input.ui-state-default.ui-buttonS:focus {
+            background: #2f780a;
             color: #ffffff;
         }
 
@@ -2137,7 +2149,7 @@
             font-size: 1em;
         }
         /* Non- jQuery UI based Elements
-                                ----------------------------------*/
+        ----------------------------------*/
         body {
             background: #ffffff;
         }
@@ -2334,46 +2346,51 @@
     <style type="text/css">
         span.uffmt_0 {
             font-weight: bold;
-            font-size: 1.6em;
-            color: #4f8abd;
+            font-size: 1.8em;
+            color: #3f77a7;
         }
 
         span.uffmt_1 {
             font-weight: bold;
-            font-size: 1.6em;
+            color: #000000;
         }
 
         span.uffmt_2 {
             font-weight: bold;
-            color: #4f8abd;
+            font-size: 0.95em;
         }
 
         span.uffmt_3 {
             font-weight: bold;
-            color: #d96709;
+            font-size: 0.95em;
+            color: #494949;
         }
 
         span.uffmt_4 {
             font-weight: bold;
-            font-size: 1.4em;
-            color: #3f77a7;
+        }
+
+        span.uffmt_5 {
+            color: #ffffff;
+        }
+
+        span.uffmt_6 {
+            font-weight: bold;
+            color: #494949;
+        }
+
+        span.uffmt_7 {
+            font-weight: bold;
+            color: #c0504d;
+        }
+
+        span.uffmt_8 {
+            font-weight: bold;
+            font-size: 1.8em;
+            color: #4f8abd;
         }
     </style>
     <style type="text/css">
-        .highlight_0 input, .highlight_0 textarea {
-            color: #000000;
-            background-color: #f56763;
-            border-color: #0b78d1;
-        }
-
-            .highlight_0 input:focus, .highlight_0 textarea:focus {
-                color: #4d4f53;
-                background-color: #fcfdfd;
-            }
-
-        .highlight_0 label {
-            color: #4d4f53;
-        }
     </style>
     <script type="text/javascript">
         var translatedStrings = {
@@ -2446,226 +2463,282 @@
         };
     </script>
 </head>
-<body id="masterbody">
-    <header>
-        <img src="Imagens/hmv.png" alt="hmv">
-        <img src="Imagens/onbase.png" alt="onbase">
-        <img src="Imagens/power.png" alt="power" style="margin-bottom: 2.5em;">  
-    </header>
-    <div class="mastercontainer">
-        <form id="form" method="post">
-            <div id="page1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer page ui-widget-content first_page">
-                <div id="panel17" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                    <div id="panel17_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 85%;">
-                        <div id="panel17_column1_container" class="unityformelementcontentcontainer ">
-                            <div id="paragraph89" dir="ltr" class="unityformelement containerFloatInherit">
-                                <span  class="paragraph no-label-overflow"><span class="uffmt_0" style="color: rgb(7, 81, 146)">Formulário de Inclusão de Notas Fiscais</span></span>
-                            </div>
+<body>
+    <form id="form" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit form" method="post">
+        <div style="border: none;" id="page2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer page ui-widget-content print_break_between_pages">
+            <div id="panel112" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                <div id="panel112_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 85%;">
+                    <div id="panel112_column1_container" class="unityformelementcontentcontainer ">
+                        <div id="paragraph115" dir="ltr" class="unityformelement containerFloatInherit">
+                            <span class="paragraph no-label-overflow"><span id="logo" class="uffmt_8" style="color: rgb(7, 81, 146)">Ordem de Serviço</span></span>
                         </div>
                     </div>
                 </div>
-                <div class="masterform">
-                    <div class="normal">
-                        <div id="panel26" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                            <div id="panel26_column1" dir="ltr" class="unityformelement unityformelementcontainer readonly containerFloatInherit layout_column" style="width: 50%;">
-                                <div id="panel26_column1_container" class="unityformelementcontentcontainer ">
-                                    <div id="horepassemedicocnpjdomedico95" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Cnpj" class="field_label bold_label">CNPJ</label>
-                                        <input name="horepassemedicocnpjdomedico95_input" id="Cnpj" type="text" aria-required="false" tabindex="0" size="100" class="field_input ui-widget-content readonly" maxlength="250" value="" readonly=readonly />
-                                    </div>
-                                    <div id="poc10nomefornecedor38" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Razaosocial" class="field_label bold_label">RAZÃO SOCIAL</label>
-                                        <input name="poc10nomefornecedor38_input" id="Razaosocial" type="text" aria-required="false" tabindex="0" size="100" class="field_input ui-widget-content readonly" maxlength="250" value="" readonly=readonly />
-            
-                                    </div>
-                                    <div id="nomeparacontato" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Contato_nome" class="field_label bold_label required">NOME DO CONTATO</label>
-                                        <input name="nomeparacontato_input" id="Contato_nome" type="text" aria-required="true" tabindex="1" size="100" class="field_input ui-widget-content" value="" />
-            
-                                    </div>
-                                    <div id="telefoneContato" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Contato_telefone" class="field_label bold_label required">TELEFONE DE CONTATO</label>
-                                        <input name="telefoneContato_input" id="Contato_telefone" type="tel" aria-required="false" tabindex="1" class="field_input ui-widget-content" value="" oninput="apenasNumeros(this)" />
-            
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="panel26_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 44%;">
-                                <div id="panel26_column2_container" class="unityformelementcontentcontainer ">
-                                    <div id="poc11emailfornecedor39" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Fornecedor_email" class="field_label bold_label">EMAIL DO FORNECEDOR</label>
-                                        <input name="poc11emailfornecedor39_input" id="Fornecedor_email" type="text" aria-required="false" tabindex="0" size="100" class="field_input ui-widget-content readonly" maxlength="250" value="" readonly=readonly />
-            
-                                    </div>
-                                    <div id="os_emailsolicitante88" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Solicitante_email" class="field_label bold_label">EMAIL SOLICITANTE</label>
-                                        <input name="os_emailsolicitante88_input" id="Solicitante_email" type="text" aria-required="false" tabindex="0" size="100" class="field_input ui-widget-content readonly" maxlength="250" value="" readonly=readonly />
-            
-                                    </div>
-                                    <div id="emai_setorFiscal" dir="ltr" class="unityformelement containerFloatInherit field">
-                                        <label for="SetorFiscal_email" class="field_label bold_label  required">EMAIL SETOR FISCAL</label>
-                                        <input name="emai_setorFiscal_input" id="SetorFiscal_email" type="text" aria-required="false" tabindex="1" size="100" class="field_input ui-widget-content" maxlength="250" value="" />
-            
-                                    </div>
-                                    <div id="telefone_setorFiscal" dir="ltr" class="unityformelement containerFloatInherit field">
-                                        <label for="SetorFiscal_telefone" class="field_label bold_label  required">TELEFONE SETOR FISCAL</label>
-                                        <input name="telefone_setorFiscal_input" id="SetorFiscal_telefone" type="text" aria-required="false" tabindex="1" class="field_input ui-widget-content" maxlength="250" value="" oninput="apenasNumeros(this)" />
-            
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="panel31" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                            <div id="panel31_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 22%;">
-                                <div id="panel31_column1_container" class="unityformelementcontentcontainer ">
-                                    <div id="os_numero_solicitacaoservicofixo106" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Solicitacao" class="field_label bold_label">NÚMERO SOLICITAÇÃO</label>
-                                        <input name="os_numero_solicitacaoservicofixo106_input" id="Solicitacao" type="text" aria-required="false" tabindex="1" class="field_input ui-widget-content readonly" value="" readonly=readonly />
-            
-                                    </div>
-                                    <div id="VALOR_PAGAMENTO" dir="ltr" class="unityformelement readonly containerFloatInherit field">
-                                        <label for="Nota_valor" class="field_label bold_label">VALOR DA NOTA</label>
-                                        <input name="VALOR_PAGAMENTO_input" id="Nota_valor" type="text" format="currency" aria-required="false" tabindex="0" class="field_input ui-widget-content readonly" value="" readonly=readonly />
-            
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="panel31_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 22%;">
-                                <div id="panel31_column2_container" class="unityformelementcontentcontainer ">
-                                    <div id="NUMERO_NOTA" dir="ltr" class="unityformelement containerFloatInherit field">
-                                        <label for="Nota_numero" class="field_label bold_label  required">NÚMERO DA NOTA</label>
-                                        <input name="NUMERO_NOTA_input" id="Nota_numero" type="number" aria-required="false" tabindex="1" class="field_input ui-widget-content" maxlength="250" value=""/>
-            
-                                    </div>
-                                    <div id="tipoNota" dir="ltr" class="unityformelement readonly containerFloatInherit field combobox">
-                                        <label for="Nota_tipo" class="field_label bold_label">TIPO DA NOTA</label>
-                                        <input name="tipoNota_input" id="Nota_tipo" aria-describedby="tipoNota_description" aria-required="false" readonly=readonly maxresults="0" tabindex="0" class="field_input ui-widget-content select_input readonly" type="text" value="Servico" />
-                                        <div class="field_print ui-widget-content hidden">SERVIÇO</div>
-                                        <span class="section_expanded selectListDescription" id="tipoNota_description">Pressione a tecla de seta para baixo para acessar os valores disponíveis para este campo ou comece a digitar para filtrar os valores</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="panel31_column3" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 24.8%;">
-                                <div id="panel31_column3_container" class="unityformelementcontentcontainer ">
-                                    <div id="dataEmissao" dir="ltr" class="unityformelement containerFloatInherit field datepicker">
-                                        <label for="Emissao" class="field_label bold_label">DATA DA EMISSÃO</label>
-                                        <input name="dataEmissao_input" id="Emissao" type="date" aria-required="false" tabindex="1" dir="ltr" aria-describedby="dataEmissao_descriptionText" class="field_input ui-widget-content" value="" onblur="validateData()" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="panel31_column4" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 22%;">
-                                <div id="panel31_column4_container" class="unityformelementcontentcontainer "></div>
-                            </div>
-                        </div>
+                <!-- <div id="panel112_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 15%;">
+                  <div id="panel112_column2_container" class="unityformelementcontentcontainer ">
+                    <div id="image116" class="unityformelement containerFloatInherit">
+                      <img src="30662" alt="" />
                     </div>
-                    <div class="anexos">
-                        <div id="paragraph45" dir="ltr" class="unityformelement containerFloatInherit">
-                            <span class="paragraph no-label-overflow"><span class="uffmt_1">Anexos</span></span>
-                        </div>
-                        <div id="panel39" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                            <div id="panel39_column1_anexoPDF" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
-                                <div id="panel39_column1_anexoPDF_container" class="unityformelementcontentcontainer ">
-                                    <div id="attachment107" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
-                                        <div class="header ui-state-default">
-                                            <div class="label_container">
-                                                <span class="bold_label js-attachment-label">Incluir Nota PDF</span>
-                                            </div>
-                                        </div>
-                                        <div id="attachment107_container" class="container ui-widget-content">
-                                            <span id="attachment107_errorMsg" class="hidden"></span>
-                                            <div id="attach_18534" class="ui-attach-container">
-                                                <div>
-                                                    <span name="form" style="margin-top: 5px;">
-                                                        <input type="file" name="filename" id="Nota_pdf" accept=".pdf" onchange="getBase64(this)" /> 
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                  </div>
+                </div> -->
+            </div>
+            <div id="section83" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+
+                <div style="border-radius: 5px;" id="section83_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="panel84" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="panel84_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column1_container" class="campoIdentificacao unityformelementcontentcontainer">
+                                <div id="SolicitacaoServicoP2" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="ordemServico" class="field_label bold_label">Número Ordem de Serviço:</label>
+                                    <input name="SolicitacaoServicoP2_input" id="ordemServico" type="text" aria-required="false" tabindex="0" size="100" class="readonly field_print field_input ui-widget-content" value="" />
                                 </div>
-                            </div>
-                            <div id="panel39_column2AnexoXML" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
-                                <div id="panel39_column2AnexoXML_container" class="unityformelementcontentcontainer ">
-                                    <div id="attachment108" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
-                                        <div class="header ui-state-default">
-                                            <div class="label_container">
-                                                <span class="bold_label js-attachment-label">Incluir Nota XML/TXT (SP)</span>
-                                            </div>
-                                        </div>
-                                        <div id="attachment108_container" class="container ui-widget-content">
-                                            <span id="attachment108_errorMsg" class="hidden"></span>
-                                            <div id="attach_18535" class="ui-attach-container">
-                                                <div>
-                                                    <span name="form" style="margin-top: 5px;">
-                                                        <input type="file" name="filename" id="Nota_xml" accept=".xml,.txt" onchange="getBase64(this)" /> 
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="helper">
-                                <div id="panel39_column3_anexoEvidencia" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
-                                    <div class="helper2">
-                                        <div id="panel39_column3_anexoEvidencia_container" class="unityformelementcontentcontainer ">
-                                            <div id="attachment114" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
-                                                <div class="header ui-state-default">
-                                                    <div class="label_container">
-                                                        <span class="bold_label js-attachment-label">Incluir Evidência de Pagamento</span>
-                                                    </div>
-                                                </div>
-                                                <div id="attachment114_container" class="container ui-widget-content">
-                                                    <div id="attach_18536" class="ui-attach-container">
-                                                        <span class="field_label" for="file_18536">Comprovação de execução, CNO, CND, n° do processo, guias de recolhimento, boleto, etc</span>
-                                                       
-                                                        <div>
-                                                            <span name="form" style="margin-top: 5px;">
-                                                                <input type="file" name="filename" id="Evidencia" accept=".pdf" onchange="getBase64(this)" />
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="paragrafoXML">
-                                <div id="parágrafofornecedor" dir="ltr" class="unityformelement containerFloatInherit">     
-                                        <span  class="paragraph no-label-overflow"><span class="uffmt_2" style="color: rgb(7, 81, 146)">Caso precise gerar um XML da Nota, clique no botão </span><span class="uffmt_3">Gerar XML</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">, e insira o arquivo gerado no portal.</span></span>
-                                </div>
-                                <div id="gerarXML" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
-                                    <input id="masterbutton" type="button" name="gerarXML" tabindex="0" value="Gerar XML" class="bold_label button ui-state-default ui-button-label-wrap ui-button" onclick=" window.open('./gerarxml.html','_blank')" />
-                                </div>            
                             </div>
                         </div>
-                        <div id="panel39_column2AnexoXML" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 53%;">
-                            <div id="painel142_coluna1_container" class="unityformelementcontentcontainer ">
+                        <div id="panel84_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column2_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="DataSolicitacaoP2" dir="ltr" class="unityformelement containerFloatInherit field">
+                                    <label for="solicitacao_Data" class="field_label bold_label">Data da Solicitação:</label>
+                                    <input name="DataSolicitacaoP2_input" id="solicitacao_Data" type="text" aria-required="false" readonly="readonly" tabindex="0" size="100" dir="ltr" aria-describedby="DataSolicitacaoP2_descriptionText" class="readonly field_input ui-widget-content" value="" />
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div id="painel142" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                    <div id="painel142_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 100%;">
-                        <div id="painel142_coluna1_container" class="unityformelementcontentcontainer ">
-                            <div id="LiberarParaEnvio" dir="ltr" class="unityformelement containerFloatInherit field checkbox">
-                                <input tabindex="0" class="field_input" type="checkbox" id="LiberarParaEnvio_input" aria-required="true" />
-                                <label for="LiberarParaEnvio_input" class="check_label field_label no-label-overflow bold_label required">Liberar para Envio</label>
+                        <div id="panel84_column3" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column3_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="SolicitanteP2" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Solicitante" class="field_label bold_label">Solicitante:</label>
+                                    <input name="SolicitanteP2_input" id="Solicitante" type="text" aria-required="false" tabindex="0" size="100" readonly="readonly" class="field_input ui-widget-content readonly" />
+
+                                </div>
                             </div>
-                            <div id="parágrafofornecedor" dir="ltr" class="unityformelement containerFloatInherit">
-                                <span class="paragraph no-label-overflow"><span class="uffmt_2" style="color: rgb(7, 81, 146)">Por favor, lembre-se de Marcar a opção "</span><span class="uffmt_3">Liberar para Envio</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">" para ser possivel  Salvar a nota fiscal e Xml Anexados, relacionadas às nossas transações comerciais. <br>Ao clicar em </span><span class="uffmt_3">Enviar Nota</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">, o Portal de Notas receberá sua solicitação.</span></span>
+                        </div>
+                        <div id="panel84_column4" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_column4_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="campocalculado777" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Setor_Projeto" class="field_label bold_label">Setor/projeto</label>
+                                    <input type="text" size="100" readonly="readonly" value="" id="Setor_Projeto" tabindex="0" name="campocalculado777_input" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
                             </div>
-                            <div id="submit" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
-                                <input id="masterbutton" type="button" name="submit" tabindex="0" value="Enviar Nota" class="bold_label button ui-state-default ui-button-label-wrap ui-button" onclick="sendData()" />
+                        </div>
+                        <div id="panel84_coluna5" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 20%;">
+                            <div id="panel84_coluna5_container" class="campoIdentificacao unityformelementcontentcontainer ">
+                                <div id="campocalculado778" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="UnidadeHMV" class="field_label bold_label">Unidade HMV</label>
+                                    <input type="text" size="100" readonly="readonly" value="" tabindex="0" id="UnidadeHMV" name="campocalculado778_input" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <script type='text/javascript' src='./Scripts/loading.js'></script>
+            <div id="section93" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label">Informações relevantes para a emissão da nota fiscal de serviços:</span>
+                    </h2>
+                </div>
+                <div id="section93_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel771" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel771_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column prevent_collapse" style="width: 50%;">
+                            <div id="painel771_coluna1_container" class="unityformelementcontentcontainer ">
+                                <div style="color: rgb(7, 81, 146); font-weight: bold;" id="parágrafo779" dir="ltr" class="unityformelement containerFloatInherit">
+                                    <span class="paragraph no-label-overflow">A Associação Hospitalar Moinhos de Vento é substituto tributário do ISSQN (matriz e filiais).</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Data limite para emissão das notas fiscais - dia 25 de cada mês; se não for dia útil antecipa data.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Data limite para inserção da nota fiscal no portal do fornecedor - até o primeiro dia útil após a emissão;</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Notas fiscais com emissão após essas datas não serão recepcionadas no portal, sendo assim, devem ser emitidas na competência seguinte.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Não serão recepcionadas no portal notas substituídas ou de outra competência.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="painel771_coluna2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column prevent_collapse" style="width: 50%;">
+                            <div id="painel771_coluna2_container" class="unityformelementcontentcontainer ">
+                                <div style="color: rgb(7, 81, 146); font-weight: bold;" id="parágrafo774" dir="ltr" class="unityformelement containerFloatInherit">
+                                    <span class="paragraph no-label-overflow">Na descrição do serviço prestado deve obrigatoriamente ter a informação do número da ordem de serviço.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Após a emissão da nota fiscal é necessário realizar o upload do xml e o pdf do documento fiscal.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Se o tipo de pagamento for depósito bancário a conta precisa ser da mesma titularidade do emissor da nota fiscal.</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                    <span class="paragraph no-label-overflow">Importante que toda atualização cadastral seja realizada tempestivamente, através do formulário disponibilizado (link)</span>
+                                    <span class="paragraph no-label-overflow">&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="seção756" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label"></span>
+                    </h2>
+                </div>
+                <div id="seção756_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel763" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel763_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 98%;">
+                            <div id="painel763_coluna1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                                <div id="caixadetexto_Fornecedor" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Fornecedor_Nome" class="field_label bold_label">Fornecedor</label>
+                                    <input name="caixadetexto_Fornecedor_input" id="Fornecedor_Nome" type="text" aria-required="false" tabindex="0" size="45" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="265" value="" />
+
+                                </div>
+                                <div id="caixadetexto_Fornecedor_CNPJ" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Fornecedor_CNPJ" class="field_label bold_label">CNPJ</label>
+                                    <input name="caixadetexto_Fornecedor_CNPJ_input" id="Fornecedor_CNPJ" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" value="" />
+
+                                </div>
+                                <div id="caixadetexto_Fornecedor_Endereco" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Fornecedor_Endereco" class="field_label bold_label">Endereço</label>
+                                    <input name="caixadetexto_Fornecedor_Endereco_input" id="Fornecedor_Endereco" type="text" aria-required="false" tabindex="0" size="100" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="250" value="" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="seção755" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label"></span>
+                    </h2>
+                </div>
+                <div id="seção755_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel760" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel760_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 98%;">
+                            <div id="painel760_coluna1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                                <div id="caixadetexto_Comprador" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Comprador_Nome" class="field_label bold_label">Comprador</label>
+                                    <input name="caixadetexto_Comprador_input" id="Comprador_Nome" type="text" aria-required="false" tabindex="0" size="45" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="265" value="" />
+
+                                </div>
+                                <div id="caixadetexto_Comprador_CNPJ" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Comprador_CNPJ" class="field_label bold_label">CNPJ</label>
+                                    <input name="caixadetexto_Comprador_CNPJ_input" id="Comprador_CNPJ" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="250" value="92.685.833/0001-51" />
+
+                                </div>
+                                <div id="caixadetexto_Comprador_Endereco" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Comprador_Endereco" class="field_label bold_label">Endereço</label>
+                                    <input name="caixadetexto_Comprador_Endereco_input" id="Comprador_Endereco" type="text" aria-required="false" tabindex="0" size="100" readonly="readonly" class="field_input ui-widget-content readonly" maxlength="250" value="RUA RAMIRO BARCELOS, 910 - MOINHOS DE VENTO - CEP 90035-001" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="seção754" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label">Local da Execução do Serviço</span>
+                    </h2>
+                </div>
+                <div id="seção754_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="caixadetextodemultilinhas_Local" dir="ltr" class="unityformelement readonly containerFloatInherit field multiline">
+                        <label for="Servico_Execucao" class="field_label bold_label"></label>
+                        <textarea rows="2" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" name="caixadetextodemultilinhas_Local_input" id="Servico_Execucao" aria-required="false"></textarea>
+
+                    </div>
+                </div>
+            </div>
+            <div id="seção757" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label">Descrição do Serviço</span>
+                    </h2>
+                </div>
+                <div id="seção757_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="caixadetextodemultilinhas_DescricaoServico" dir="ltr" class="unityformelement readonly containerFloatInherit field multiline">
+                        <label for="Servico_Descricao" class="field_label bold_label"></label>
+                        <textarea rows="2" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" name="caixadetextodemultilinhas_DescricaoServico_input" id="Servico_Descricao" aria-required="false"></textarea>
+
+                    </div>
+                </div>
+            </div>
+            <div id="seção773" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit section">
+                <div class="header ui-state-default">
+                    <h2 class="label_container">
+                        <span class="bold_label"></span>
+                    </h2>
+                </div>
+                <div id="seção773_container" class="unityformelementcontentcontainer container ui-widget-content section_expanded">
+                    <div id="painel768" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                        <div id="painel768_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 98%;">
+                            <div id="painel768_coluna1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                                <div id="campocalculado770" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="CondicaoPagamento" class="field_label bold_label">Condição de Pagamento (Dias)</label>
+                                    <input type="text" readonly="readonly" value="" tabindex="0" name="campocalculado770_input" id="CondicaoPagamento" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                                <div id="caixadetexto_diasPedidos" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="DiasPedidos" class="field_label bold_label">Dias Pedidos</label>
+                                    <input name="caixadetexto_diasPedidos_input" id="DiasPedidos" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" />
+
+                                </div>
+                                <div id="campocalculado771" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Periodo_Entrega" class="field_label bold_label">Periodo p\ Entrega</label>
+                                    <input type="text" size="30" readonly="readonly" value=" à " tabindex="0" name="campocalculado771_input" id="Periodo_Entrega" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                                <div id="caixadetexto_ValorTotal" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="Valor_Os" class="field_label bold_label">Valor Total (R$)</label>
+                                    <input name="caixadetexto_ValorTotal_input" id="Valor_Os" type="text" aria-required="false" tabindex="0" readonly="readonly" class="field_input ui-widget-content readonly" />
+
+                                </div>
+                                <div id="campocalculado_Fornecedor_adiantamento" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="ValorAdiantamento" class="field_label bold_label">Valor Adiantamento (R$)</label>
+                                    <input type="text" readonly="readonly" value="" tabindex="0" name="campocalculado_Fornecedor_adiantamento_input" id="ValorAdiantamento" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                                <div id="campocalculado_Fornecedor_nPropostaComercial" dir="ltr" class="unityformelement readonly containerFloatInherit field">
+                                    <label for="NumeroProposta" class="field_label bold_label">Número da Proposta Comercial</label>
+                                    <input type="text" readonly="readonly" value="" tabindex="0" name="campocalculado_Fornecedor_nPropostaComercial_input" id="NumeroProposta" class="field_input ui-widget-content readonly calculated" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="InicioServico" dir="ltr" class="unityformelement containerFloatInherit field datepicker">
+                <label for="InicioServico_input" class="field_label bold_label">Início do Serviço</label>
+                <input id="InicioServico_input" type="date" aria-required="false" tabindex="0" dir="ltr" aria-describedby="InicioServico_descriptionText" class="field_input ui-widget-content" onchange="validateData()" required=required />
+
+            </div>
+            <div id="panel_confirmarRecusar" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
+                <div id="panel105_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
+                    <div id="panel105_column1_container" class="unityformelementcontentcontainer orientation_horizontal">
+                        <div dir="ltr" class="unityformelement containerFloatInherit formbutton">
+                            <input id="RecusarOrdem" type="button" tabindex="0" value="Recusar Ordem" class="bold_label button ui-state-default ui-button-label-wrap ui-button" onclick="sendData('Recusado')" />
+                        </div>
+                        <div dir="ltr" class="unityformelement containerFloatInherit formbutton">
+                            <input type="button" id="AceitarOrdem" tabindex="0" value="Aceitar Ordem" class="" onclick="sendData('Aceito')" disabled=disabled />
+                        </div>
+                        <span class="field_label bold_label" style="color: rgb(7, 81, 146);">*Para habilitar o botão de aceitação, obrigatório preencher a data de início do serviço</span>
+
+                        <div dir="ltr" class="unityformelement containerFloatInherit formbutton">
+
+                        </div>
+
+                        <!-- <div id="ConfirmaFornecedor" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
+      <input type="submit" tabindex="0" value="Confirma Escolha?" class="bold_label button ui-state-default ui-button-label-wrap ui-button" disabled="disabled" />
+    </div> -->
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="botãodeimpressão" dir="ltr" class="unityformelement containerFloatInherit printbutton formbutton">
+              <input type="button" tabindex="0" value="Imprimir Ordem de Serviço" class="bold_label button ui-state-default ui-button-label-wrap ui-button" disabled="disabled" />
+            </div> -->
+        </div>
+        <div id="footer" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer footer ui-widget-content"></div>
+    </form>
 </body>
 </html>
-
