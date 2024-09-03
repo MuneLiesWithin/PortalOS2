@@ -2456,7 +2456,7 @@
         <form id="form" method="post">
             <div id="page1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit unityformelementcontentcontainer page ui-widget-content first_page">
                 <div id="panel17" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                    <div id="panel17_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column">
+                    <div id="panel17_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 85%;">
                         <div id="panel17_column1_container" class="unityformelementcontentcontainer ">
                             <div id="paragraph89" dir="ltr" class="unityformelement containerFloatInherit">
                                 <span  class="paragraph no-label-overflow"><span class="uffmt_0" style="color: rgb(7, 81, 146)">Formulário de Inclusão de Notas Fiscais</span></span>
@@ -2490,7 +2490,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="panel26_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
+                            <div id="panel26_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 44%;">
                                 <div id="panel26_column2_container" class="unityformelementcontentcontainer ">
                                     <div id="poc11emailfornecedor39" dir="ltr" class="unityformelement readonly containerFloatInherit field">
                                         <label for="Fornecedor_email" class="field_label bold_label">EMAIL DO FORNECEDOR</label>
@@ -2516,7 +2516,7 @@
                             </div>
                         </div>
                         <div id="panel31" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                            <div id="panel31_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column">
+                            <div id="panel31_column1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 22%;">
                                 <div id="panel31_column1_container" class="unityformelementcontentcontainer ">
                                     <div id="os_numero_solicitacaoservicofixo106" dir="ltr" class="unityformelement readonly containerFloatInherit field">
                                         <label for="Solicitacao" class="field_label bold_label">NÚMERO SOLICITAÇÃO</label>
@@ -2530,11 +2530,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="panel31_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" >
+                            <div id="panel31_column2" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 22%;">
                                 <div id="panel31_column2_container" class="unityformelementcontentcontainer ">
                                     <div id="NUMERO_NOTA" dir="ltr" class="unityformelement containerFloatInherit field">
                                         <label for="Nota_numero" class="field_label bold_label  required">NÚMERO DA NOTA</label>
-                                        <input name="NUMERO_NOTA_input" id="Nota_numero" type="number" aria-required="false" tabindex="1" class="field_input ui-widget-content" maxlength="250" value="" />
+                                        <input name="NUMERO_NOTA_input" id="Nota_numero" type="number" aria-required="false" tabindex="1" class="field_input ui-widget-content" maxlength="250" value=""/>
             
                                     </div>
                                     <div id="tipoNota" dir="ltr" class="unityformelement readonly containerFloatInherit field combobox">
@@ -2545,7 +2545,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="panel31_column3" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column">
+                            <div id="panel31_column3" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 24.8%;">
                                 <div id="panel31_column3_container" class="unityformelementcontentcontainer ">
                                     <div id="dataEmissao" dir="ltr" class="unityformelement containerFloatInherit field datepicker">
                                         <label for="Emissao" class="field_label bold_label">DATA DA EMISSÃO</label>
@@ -2553,15 +2553,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="panel31_column4" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 22%;">
+                                <div id="panel31_column4_container" class="unityformelementcontentcontainer "></div>
+                            </div>
                         </div>
                     </div>
-                    
+                    <div class="anexos">
                         <div id="paragraph45" dir="ltr" class="unityformelement containerFloatInherit">
                             <span class="paragraph no-label-overflow"><span class="uffmt_1">Anexos</span></span>
                         </div>
-                        <div class="anexos">
                         <div id="panel39" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                            <div id="panel39_column1_anexoPDF" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column">
+                            <div id="panel39_column1_anexoPDF" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
                                 <div id="panel39_column1_anexoPDF_container" class="unityformelementcontentcontainer ">
                                     <div id="attachment107" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
                                         <div class="header ui-state-default">
@@ -2574,8 +2576,7 @@
                                             <div id="attach_18534" class="ui-attach-container">
                                                 <div>
                                                     <span name="form" style="margin-top: 5px;">
-                                                        <input type="file" name="filename" id="Nota_pdf" accept=".pdf" onchange="getBase64(this)" />
-                                                       
+                                                        <input type="file" name="filename" id="Nota_pdf" accept=".pdf" onchange="getBase64(this)" /> 
                                                     </span>
                                                 </div>
                                             </div>
@@ -2583,21 +2584,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="panel39_column3_anexoEvidencia" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column">
-                                <div id="panel39_column3_anexoEvidencia_container" class="unityformelementcontentcontainer" >
-                                    <div id="attachment114" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
+                            <div id="panel39_column2AnexoXML" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
+                                <div id="panel39_column2AnexoXML_container" class="unityformelementcontentcontainer ">
+                                    <div id="attachment108" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
                                         <div class="header ui-state-default">
                                             <div class="label_container">
-                                                <span class="bold_label js-attachment-label">Incluir Evidência de Pagamento</span>
+                                                <span class="bold_label js-attachment-label">Incluir Nota XML/TXT (SP)</span>
                                             </div>
                                         </div>
-                                        <div id="attachment114_container" class="container ui-widget-content">
-                                            <div id="attach_18536" class="ui-attach-container">
-                                                <span class="field_label" for="file_18536">Comprovação de execução, CNO, CND, n° do processo, guias de recolhimento, boleto, etc</span>
-                                               
+                                        <div id="attachment108_container" class="container ui-widget-content">
+                                            <span id="attachment108_errorMsg" class="hidden"></span>
+                                            <div id="attach_18535" class="ui-attach-container">
                                                 <div>
                                                     <span name="form" style="margin-top: 5px;">
-                                                        <input type="file" name="filename" id="Evidencia" accept=".pdf" onchange="getBase64(this)" />
+                                                        <input type="file" name="filename" id="Nota_xml" accept=".xml,.txt" onchange="getBase64(this)" /> 
                                                     </span>
                                                 </div>
                                             </div>
@@ -2605,52 +2605,56 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="panel39_column2AnexoXML" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column">
-                            <div id="panel39_column2AnexoXML_container" class="unityformelementcontentcontainer ">
-                                <div id="attachment108" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
-                                    <div class="header ui-state-default">
-                                        <div class="label_container">
-                                            <span class="bold_label js-attachment-label">Incluir Nota XML/TXT(SP)</span>
-                                        </div>
-                                    </div>
-                                    <div id="attachment108_container" class="container ui-widget-content">
-                                        <span id="attachment108_errorMsg" class="hidden"></span>
-                                        <div id="attach_18535" class="ui-attach-container">
-                                            <div>
-                                                <span name="form" style="margin-top: 5px;">
-                                                    <input type="file" name="filename" id="Nota_xml" accept=".xml,.txt" onchange="getBase64(this)" />
-                                                    
-                                                </span>
+                            <div class="helper">
+                                <div id="panel39_column3_anexoEvidencia" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 50%;">
+                                    <div class="helper2">
+                                        <div id="panel39_column3_anexoEvidencia_container" class="unityformelementcontentcontainer ">
+                                            <div id="attachment114" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
+                                                <div class="header ui-state-default">
+                                                    <div class="label_container">
+                                                        <span class="bold_label js-attachment-label">Incluir Evidência de Pagamento</span>
+                                                    </div>
+                                                </div>
+                                                <div id="attachment114_container" class="container ui-widget-content">
+                                                    <div id="attach_18536" class="ui-attach-container">
+                                                        <span class="field_label" for="file_18536">Comprovação de execução, CNO, CND, n° do processo, guias de recolhimento, boleto, etc</span>
+                                                       
+                                                        <div>
+                                                            <span name="form" style="margin-top: 5px;">
+                                                                <input type="file" name="filename" id="Evidencia" accept=".pdf" onchange="getBase64(this)" />
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="panel39_column2AnexoXML" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column">
-                            <div id="painel142_coluna1_container" class="unityformelementcontentcontainer ">
-                                <div id="attachment114" dir="ltr" class="unityformelement containerFloatInherit section ui-collapsible attachment">
-                                    <div id="parágrafofornecedor" dir="ltr" class="unityformelement containerFloatInherit">
-                                        <span class="paragraph no-label-overflow"><span class="uffmt_2" style="color: rgb(7, 81, 146)">Caso precise gerar um XML da Nota, clique no botão "</span><span class="uffmt_3">Gerar XML</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">", e insira o arquivo gerado no portal.</span></span>
-                                    </div>
-                                    <div id="gerarXML" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
-                                        <input id="masterbutton" type="button" name="gerarXML" tabindex="0" value="Gerar XML" class="bold_label button ui-state-default ui-button-label-wrap ui-button" onclick=" window.open('./gerarxml.html','_blank')" />
-                                    </div>
+                            <div class="paragrafoXML">
+                                <div id="parágrafofornecedor" dir="ltr" class="unityformelement containerFloatInherit">     
+                                        <span  class="paragraph no-label-overflow"><span class="uffmt_2" style="color: rgb(7, 81, 146)">Caso precise gerar um XML da Nota, clique no botão </span><span class="uffmt_3">Gerar XML</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">, e insira o arquivo gerado no portal.</span></span>
                                 </div>
+                                <div id="gerarXML" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
+                                    <input id="masterbutton" type="button" name="gerarXML" tabindex="0" value="Gerar XML" class="bold_label button ui-state-default ui-button-label-wrap ui-button" onclick=" window.open('./gerarxml.html','_blank')" />
+                                </div>            
+                            </div>
+                        </div>
+                        <div id="panel39_column2AnexoXML" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 53%;">
+                            <div id="painel142_coluna1_container" class="unityformelementcontentcontainer ">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="painel142" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit ui-helper-clearfix panel">
-                    <div id="painel142_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" >
+                    <div id="painel142_coluna1" dir="ltr" class="unityformelement unityformelementcontainer containerFloatInherit layout_column" style="width: 100%;">
                         <div id="painel142_coluna1_container" class="unityformelementcontentcontainer ">
                             <div id="LiberarParaEnvio" dir="ltr" class="unityformelement containerFloatInherit field checkbox">
                                 <input tabindex="0" class="field_input" type="checkbox" id="LiberarParaEnvio_input" aria-required="true" />
                                 <label for="LiberarParaEnvio_input" class="check_label field_label no-label-overflow bold_label required">Liberar para Envio</label>
                             </div>
                             <div id="parágrafofornecedor" dir="ltr" class="unityformelement containerFloatInherit">
-                                <span class="paragraph no-label-overflow"><span class="uffmt_2" style="color: rgb(7, 81, 146)">Por favor, lembre-se de Marcar a opção "</span><span class="uffmt_3">Liberar para Envio</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">" para ser possivel  Salvar a nota fiscal e Xml Anexados, relacionadas às nossas transações comerciais. Ao clicar em </span><span class="uffmt_3">Enviar Nota</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">, o Portal de Notas receberá sua solicitação.</span></span>
+                                <span class="paragraph no-label-overflow"><span class="uffmt_2" style="color: rgb(7, 81, 146)">Por favor, lembre-se de Marcar a opção "</span><span class="uffmt_3">Liberar para Envio</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">" para ser possivel  Salvar a nota fiscal e Xml Anexados, relacionadas às nossas transações comerciais. <br>Ao clicar em </span><span class="uffmt_3">Enviar Nota</span><span class="uffmt_2" style="color: rgb(7, 81, 146)">, o Portal de Notas receberá sua solicitação.</span></span>
                             </div>
                             <div id="submit" dir="ltr" class="unityformelement containerFloatInherit submit formbutton">
                                 <input id="masterbutton" type="button" name="submit" tabindex="0" value="Enviar Nota" class="bold_label button ui-state-default ui-button-label-wrap ui-button" onclick="sendData()" />
@@ -2659,12 +2663,9 @@
                     </div>
                 </div>
             </div>
-    
         </form>
     </div>
-    <footer style="box-sizing:unset;">
-        <p>Power Imaging<sup>&copy;</sup> 2024</p>
-    </footer>
     <script type='text/javascript' src='./Scripts/loading.js'></script>
 </body>
 </html>
+
