@@ -83,10 +83,6 @@ label {
     width: 50%;
 }
 
-#painel142 {
-    margin-top: 1em;
-}
-
 #tipoNota {
     width: 101.5%;
 }
@@ -100,6 +96,12 @@ label {
     margin-top: 11em;
     position: absolute;
     left: 74%;
+}
+
+.botoeslol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /*
